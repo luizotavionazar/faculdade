@@ -20,15 +20,15 @@ public class Principal {
         float quantProduto = 0;
         boolean control = false;
 
-        // JPanel - Cria a tela
-        // JLapel - Cria o campo
-        // JTextField - Cria o preenchimento do campo
-        // setLayout - Organiza a ordem dos campos da tela, Y= Vertical, X= Horizontal
-        // Em "JTextField()", caso o setLayout seja X, o valor dentro de '()'' define o
-        // tamanho(visual) do campo
+        // JPanel - Cria a janela;
+        // setLayout - Organiza os campos da janela, sendo: Y_AXIS= Vertical, X_AXIS= Horizontal;
+        // JLapel - Cria o campo de texto;
+        // JTextField - Cria o campo de preenchimento;
+        // Em "JTextField()", caso o 'setLayout' seja 'X', o valor dentro de '()' define o tamanho(visual) do campo;
+        // Documentação da classe JOptionPane: https://brunoagt.wordpress.com/2011/03/28/javax-swing-joptionpane-conhecendo-e-utilizando-a-classe-joptionpane/
 
-        JPanel tela = new JPanel();
-        tela.setLayout(new BoxLayout(tela, BoxLayout.Y_AXIS));
+        JPanel telaCad = new JPanel();
+        telaCad.setLayout(new BoxLayout(telaCad, BoxLayout.Y_AXIS));
 
         JLabel descricao = new JLabel("Descrição(*):");
         JTextField campoDescricao = new JTextField();
@@ -42,16 +42,16 @@ public class Principal {
         JLabel orientacao = new JLabel("(*) Preenchimento obrigatório");
 
         // Adiciona os campos na tela
-        tela.add(descricao);
-        tela.add(campoDescricao);
-        tela.add(preco);
-        tela.add(campoPreco);
-        tela.add(quantidade);
-        tela.add(campoQuantidade);
-        tela.add(orientacao);
+        telaCad.add(descricao);
+        telaCad.add(campoDescricao);
+        telaCad.add(preco);
+        telaCad.add(campoPreco);
+        telaCad.add(quantidade);
+        telaCad.add(campoQuantidade);
+        telaCad.add(orientacao);
 
         while (!control) {
-            int preenchimento = JOptionPane.showConfirmDialog(null, tela, "Cadastro Produto",
+            int preenchimento = JOptionPane.showConfirmDialog(null, telaCad, "Cadastro Produto",
                     JOptionPane.OK_CANCEL_OPTION);
 
             if (preenchimento == JOptionPane.OK_OPTION) { // Grava os dados preenchidos
@@ -60,8 +60,7 @@ public class Principal {
                 if (descProduto.trim().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Erro: Obrigatório preencher a Descrição do Produto",
                             "Preenchimento incorreto", JOptionPane.ERROR_MESSAGE);
-                    continue; // Necessário continuar para reiniciar o looping e não valir Preço e Quantidade
-                              // caso vazio
+                    continue; // Necessário continuar para reiniciar o looping e não validar o Preço e Quantidade caso vazios
                 }
 
                 try {
