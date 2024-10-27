@@ -22,8 +22,8 @@ public class Principal {
 
         // JPanel - Cria a janela;
         // setLayout - Organiza os campos da janela, sendo: Y_AXIS= Vertical, X_AXIS= Horizontal;
-        // JLapel - Cria o campo de texto;
-        // JTextField - Cria o campo de preenchimento;
+        // JLapel - Cria o campo de saída;
+        // JTextField - Cria o campo de entrada;
         // Em "JTextField()", caso o 'setLayout' seja 'X', o valor dentro de '()' define o tamanho(visual) do campo;
         // Documentação da classe JOptionPane: https://brunoagt.wordpress.com/2011/03/28/javax-swing-joptionpane-conhecendo-e-utilizando-a-classe-joptionpane/
 
