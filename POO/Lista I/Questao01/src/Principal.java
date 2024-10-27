@@ -1,45 +1,69 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import javax.swing.*;
+import javax.swing.*; //Para criar as janelas
+import java.awt.Font; //Para alterar as fontes
 
 public class Principal {
+    public String descProduto = null;
+    public float precoProduto = 0;
+    public float quantProduto = 0;
 
-    public void menu() {
+    // JPanel - Cria a janela;
+    // setLayout - Organiza os campos da janela, sendo: Y_AXIS= Vertical, X_AXIS= Horizontal;
+    // JLabel - Cria o campo de saída;
+    // JTextField - Cria o campo de entrada;
+    // Em "JTextField()", caso o 'setLayout' seja 'X', o valor dentro de '()' define o tamanho(visual) do campo;
+    // Documentação da classe 'JOptionPane': https://brunoagt.wordpress.com/2011/03/28/javax-swing-joptionpane-conhecendo-e-utilizando-a-classe-joptionpane/
+
+    // Como usar a classe 'Font':
+    // Sintaxe: Font("nomeDaFonte", estiloDaFonte, tamanhoDaFonte);
+    // Exemplos de fontes: "Serif", "SansSerif", "Monospaced", "Dialog", "DialogInput"
+    // Estilos de fonte: 0= Regular, padrão
+    //                   1= Negrito
+    //                   2= Italico
+    //                   3= Negrito e Italico
+    // Para utilizar a fonte na janela: "nomeDaLabel.setFont(nomeDaFonteCriada)"
+    //                              ou: "nomeDaLabel.setFont(new Font("nomeDaFonte", estiloDaFonte, tamanhoDaFonte))"
+    // Fonte padrão das label: [family=Dialog,name=Dialog,style=bold,size=12]
+
+    Font fonteNegrito = new Font("SansSerif", 1, 14);
+    Font fonteItalico = new Font("SansSerif", 2, 14);
+
+    public void menu(Produto produto) {
         System.out.println("\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
         System.out.println("         MENU PRODUTO");
         System.out.println("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
         System.out.println("  1 > Cadastrar");
-        System.out.println("  2 > Informações");
-        System.out.println("  3 > Calcular Valor Total");
+
+        if (produto.getDescricao()!=null) {
+            System.out.println("  2 > Informações");
+            System.out.println("  3 > Calcular Valor Total");
+        }
+
+        System.out.println("  4 > Sair");
         System.out.println("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n");
     }
 
     public Produto cadastrarProduto(Produto produto) {
-        String descProduto = null;
-        float precoProduto = 0;
-        float quantProduto = 0;
         boolean control = false;
-
-        // JPanel - Cria a janela;
-        // setLayout - Organiza os campos da janela, sendo: Y_AXIS= Vertical, X_AXIS= Horizontal;
-        // JLapel - Cria o campo de saída;
-        // JTextField - Cria o campo de entrada;
-        // Em "JTextField()", caso o 'setLayout' seja 'X', o valor dentro de '()' define o tamanho(visual) do campo;
-        // Documentação da classe 'JOptionPane': https://brunoagt.wordpress.com/2011/03/28/javax-swing-joptionpane-conhecendo-e-utilizando-a-classe-joptionpane/
 
         JPanel telaCad = new JPanel();
         telaCad.setLayout(new BoxLayout(telaCad, BoxLayout.Y_AXIS));
 
         JLabel descricao = new JLabel("Descrição(*):");
+        descricao.setFont(fonteNegrito);
         JTextField campoDescricao = new JTextField();
 
         JLabel preco = new JLabel("Preço(*):");
+        preco.setFont(fonteNegrito);
         JTextField campoPreco = new JTextField();
 
         JLabel quantidade = new JLabel("Quantidade(*):");
+        quantidade.setFont(fonteNegrito);
         JTextField campoQuantidade = new JTextField();
 
         JLabel orientacao = new JLabel("(*) Preenchimento obrigatório");
+        orientacao.setFont(fonteItalico);
 
         // Adiciona os campos na janela, na ordem da inserção
         telaCad.add(descricao);
@@ -67,7 +91,7 @@ public class Principal {
                     precoProduto = Float.parseFloat(campoPreco.getText());
                     quantProduto = Float.parseFloat(campoQuantidade.getText());
                     produto.setProduto(descProduto, precoProduto, quantProduto);
-                    System.out.println("Produto cadastrado com sucesso!");
+                    System.out.println("\nProduto cadastrado com sucesso!");
                     control = true;
 
                 } catch (NumberFormatException e) {
@@ -78,7 +102,7 @@ public class Principal {
             }
 
             else {
-                System.out.println("Foi cancelado o cadastro do Produto");
+                System.out.println("\nFoi cancelado o cadastro do Produto");
                 control = true;
             }
 
@@ -87,11 +111,16 @@ public class Principal {
         return produto;
     }
 
-    public void exibirDetalhes() {
+    public void exibirDetalhes(Produto produto) {
+
+        System.out.println("\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+        System.out.println("   Produto: "+produto.getDescricao());
+        System.out.println("     Preço: R$"+produto.getPreco());
+        System.out.println("Quantidade: "+produto.getQuantidade());
 
     }
 
-    public void calcularTotal() {
+    public void calcularTotal(Produto produto) {
 
     }
 
@@ -99,43 +128,58 @@ public class Principal {
         Scanner in = new Scanner(System.in);
         Principal chamar = new Principal();
         Produto produto = new Produto();
-        boolean control = true;
+        boolean control = true, control1= true;
         int opc = 0;
 
-        chamar.menu();
+        while (control) {
+            chamar.menu(produto);
+            do {
+                System.out.print("Escolha a opção desejada: ");
+                try {
+                    opc = in.nextInt();
+                    control1 = true;
+                } catch (InputMismatchException e) {
+                    System.out.println("\nInforme um valor válido!\n");
+                    in.next();
+                    control1 = false;
+                }
+            } while (!control1);
+    
+            switch (opc) {
+                case 1:
+                    produto = chamar.cadastrarProduto(produto);
+                    break;
+    
+                case 2:
+                    if (produto.getDescricao()=="null"|| //Para cair no else
+                        produto.getDescricao()!=null) {  //Para entrar no metodo
+                        chamar.exibirDetalhes(produto); 
+                    }
+                    else {
+                        System.out.println("\nNecessário cadastrar o produto para acessar essa opção!");
+                    }
+                    break;
+    
+                case 3:
+                    if (produto.getDescricao()=="null"||
+                        produto.getDescricao()!=null) {
+                        chamar.calcularTotal(produto);
+                    }
+                    else {
+                        System.out.println("\nNecessário cadastrar o produto para acessar essa opção!");
+                    }
+                    break;
 
-        do {
-            System.out.print("Escolha a opção desejada: ");
-            try {
-                opc = in.nextInt();
-                System.out.println("\n");
-                control = true;
-            } catch (InputMismatchException e) {
-                System.out.println("\nInforme um valor válido!\n");
-                in.next();
-                control = false;
+                case 4:
+                    control= false;
+                    System.out.println("");
+                    break;
+    
+                default:
+                    System.out.println("\nOpção inválida!");
+                    break;
+    
             }
-        } while (!control);
-
-        switch (opc) {
-            case 1:
-                produto = chamar.cadastrarProduto(produto);
-                System.out.println(produto.getDescricao()); 
-                System.out.println(produto.getPreco());
-                System.out.println(produto.getQuantidade());
-                break;
-
-            case 2:
-
-                break;
-
-            case 3:
-
-                break;
-
-            default:
-                break;
-
         }
 
         in.close();
