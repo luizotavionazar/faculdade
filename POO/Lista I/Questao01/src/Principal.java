@@ -25,7 +25,7 @@ public class Principal {
         // JLapel - Cria o campo de saída;
         // JTextField - Cria o campo de entrada;
         // Em "JTextField()", caso o 'setLayout' seja 'X', o valor dentro de '()' define o tamanho(visual) do campo;
-        // Documentação da classe JOptionPane: https://brunoagt.wordpress.com/2011/03/28/javax-swing-joptionpane-conhecendo-e-utilizando-a-classe-joptionpane/
+        // Documentação da classe 'JOptionPane': https://brunoagt.wordpress.com/2011/03/28/javax-swing-joptionpane-conhecendo-e-utilizando-a-classe-joptionpane/
 
         JPanel telaCad = new JPanel();
         telaCad.setLayout(new BoxLayout(telaCad, BoxLayout.Y_AXIS));
@@ -41,7 +41,7 @@ public class Principal {
 
         JLabel orientacao = new JLabel("(*) Preenchimento obrigatório");
 
-        // Adiciona os campos na tela
+        // Adiciona os campos na janela, na ordem da inserção
         telaCad.add(descricao);
         telaCad.add(campoDescricao);
         telaCad.add(preco);
