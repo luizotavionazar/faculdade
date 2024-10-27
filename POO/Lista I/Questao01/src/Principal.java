@@ -120,6 +120,9 @@ public class Principal {
         switch (opc) {
             case 1:
                 produto = chamar.cadastrarProduto(produto);
+                System.out.println(produto.getDescricao()); 
+                System.out.println(produto.getPreco());
+                System.out.println(produto.getQuantidade());
                 break;
 
             case 2:
