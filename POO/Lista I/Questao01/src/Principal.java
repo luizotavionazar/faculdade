@@ -121,7 +121,10 @@ public class Principal {
     }
 
     public void calcularTotal(Produto produto) {
+        float media= produto.getPreco()*produto.getQuantidade();
 
+        System.out.println("\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+        System.out.println("      Valor total: R$"+media);
     }
 
     public static void main(String[] args) {
