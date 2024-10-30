@@ -146,6 +146,7 @@ public class Principal {
                     in.next();
                     control1 = false;
                 }
+                
             } while (!control1);
     
             switch (opc) {
