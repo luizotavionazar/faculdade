@@ -1,0 +1,22 @@
+
+body {
+    background-color: red;
+}
+
+/* Aqui vamos definir as limitações usando CSS */
+
+        /* Definindo limites para a largura do conteúdo */
+        .conteudo {
+            max-width: 1000px;     /* Largura máxima de 1000px */
+            margin: 0 auto;       /* Centraliza o conteúdo na página */
+            padding: 30px;        /* Espaço interno ao redor do conteúdo */
+            background-color: #f0f0f0; /* Cor de fundo para visualização */
+        }
+
+        /* Limitações de rolagem para um container */
+        .container {
+            max-height: 400px;    /* Altura máxima de 400px */
+            overflow-y: scroll;   /* Rolagem vertical se o conteúdo for maior */
+            background-color: #e0e0e0;
+            padding: 10px;
+        }
