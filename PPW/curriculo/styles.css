@@ -1,22 +1,37 @@
-
 body {
-    background-color: red;
+    margin: 50px;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
-/* Aqui vamos definir as limitações usando CSS */
+.header {
+    background-color: #0079C6; /* Cor do cabeçalho */
+    color: white;
+    padding: 15px;
+}
 
-        /* Definindo limites para a largura do conteúdo */
-        .conteudo {
-            max-width: 1000px;     /* Largura máxima de 1000px */
-            margin: 0 auto;       /* Centraliza o conteúdo na página */
-            padding: 30px;        /* Espaço interno ao redor do conteúdo */
-            background-color: #f0f0f0; /* Cor de fundo para visualização */
-        }
+.container {
+    display: flex; /* Usando flexbox para dividir em duas colunas */
+    padding: 0px;
+}
 
-        /* Limitações de rolagem para um container */
-        .container {
-            max-height: 400px;    /* Altura máxima de 400px */
-            overflow-y: scroll;   /* Rolagem vertical se o conteúdo for maior */
-            background-color: #e0e0e0;
-            padding: 10px;
-        }
+.left {
+    flex: 1; /* Lado esquerdo ocupa 1 parte do espaço */
+    padding: 10px;
+    box-sizing: border-box; /* Inclui o padding no total da largura */
+    background-color: #CDE4F4; /* Cor do lado esquerdo */
+}
+
+.right {
+    flex: 2; /* Lado direito ocupa 2 partes do espaço */
+    padding: 10px;
+    box-sizing: border-box; /* Inclui o padding no total da largura */
+    background-color: #FFFFFF; /* Cor do lado direito */
+}
+
+.conteudo {
+    max-width: 1000px;     
+    margin: 0 auto; 
+    padding: 0px;        
+    background-color: #FFFFFF;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
