@@ -22,11 +22,47 @@ public class Principal {
     }
     
     public void exibirDetalhes(Jogador jogador1, Jogador jogador2) {
+        JPanel telaStatus= new JPanel();
+        telaStatus.setLayout(new BoxLayout(telaStatus, BoxLayout.Y_AXIS));
+
+        JLabel linha1= new JLabel("Jogador 1: "+jogador1.getNome());
+        linha1.setFont(fonteNegrito);
+        
+        JLabel linha2= new JLabel("Pontos: "+jogador1.getPontos());
+        linha2.setFont(fonteItalico);
+
+        JLabel linha3= new JLabel("Energia: "+jogador1.getEnergia());
+        linha3.setFont(fonteItalico);
+
+        JLabel espaco= new JLabel(" ");
+
+        JLabel linha4= new JLabel("Jogador 2: "+jogador2.getNome());
+        linha4.setFont(fonteNegrito);
+        
+        JLabel linha5= new JLabel("Pontos: "+jogador2.getPontos());
+        linha5.setFont(fonteItalico);
+
+        JLabel linha6= new JLabel("Energia: "+jogador2.getEnergia());
+        linha6.setFont(fonteItalico);
+
+        telaStatus.add(linha1);
+        telaStatus.add(linha2);
+        telaStatus.add(linha3);
+        telaStatus.add(espaco);
+        telaStatus.add(linha4);
+        telaStatus.add(linha5);
+        telaStatus.add(linha6);
+
+        JOptionPane.showMessageDialog(telaStatus, telaStatus, 
+            "Placar atual", JOptionPane.INFORMATION_MESSAGE);
 
     }
 
     public boolean ataque(boolean ataca, Jogador jogador1, Jogador jogador2) {
-
+        //Tipos de ataque:
+        //Pancada(10% de chance) - Causa 25 dano
+        //Forte(30% de chance) - Causa 20 dano
+        //Fraco(60% de chance) - Causa 10 dano
 
         return ataca;
     }
