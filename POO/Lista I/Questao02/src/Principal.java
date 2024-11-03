@@ -25,56 +25,194 @@ public class Principal {
 
     }
 
-    public Jogador ataque(Jogador jogador) {
+    public boolean ataque(boolean ataca, Jogador jogador1, Jogador jogador2) {
 
 
-        return jogador;
+        return ataca;
+    }
+
+    public boolean testeDesistencia(boolean desistiu, Jogador jogador1, Jogador jogador2) {
+        //O ATACANTE PODE DESISTIR APENAS QUANDO ESTA PERDENDO (MENOS ENERGIA QUE O OPONENTE)
+
+        return desistiu;
+    }
+
+    public int telaJogo(int opc, int rodada, Jogador jogador1, Jogador jogador2) {
+        String atacante= null;
+        String oponente= null;
+        boolean control= false;
+
+        if (rodada%2 == 1) { //Define o atacante e o oponente
+            atacante= jogador1.getNome();
+            oponente= jogador2.getNome();
+        }
+
+        else {
+            atacante= jogador2.getNome();
+            oponente= jogador1.getNome();
+        }
+
+        JPanel telaRodada= new JPanel();
+        telaRodada.setLayout(new BoxLayout(telaRodada, BoxLayout.Y_AXIS));
+
+        JLabel espaco= new JLabel(" ");
+
+        JLabel linha1= new JLabel(rodada+"º Rodada");
+        linha1.setFont(fonteNegrito);
+
+        JLabel linha2= new JLabel("Atacante: "+atacante);
+        linha2.setFont(fonteNegrito);
+        
+        JLabel linha3= new JLabel("Oponente: "+oponente);
+        linha3.setFont(fonteNegrito);
+
+        JLabel linha4= new JLabel("O que deseja fazer?");
+        linha4.setFont(fonteItalico);
+        JTextField opcao = new JTextField();
+
+        JLabel linha5= new JLabel("1: Atacar");
+        linha5.setFont(fonteItalico);
+        JLabel linha6= new JLabel("2: Ver Placar");
+        linha6.setFont(fonteItalico);
+        JLabel linha7= new JLabel("3 ou 'Cancel': Pula a vez");
+        linha7.setFont(fonteItalico);
+        JLabel linha8= new JLabel("4: Desistir");
+        linha8.setFont(fonteItalico);
+
+        telaRodada.add(linha1);
+        telaRodada.add(espaco);
+        telaRodada.add(linha2);
+        telaRodada.add(linha3);
+        telaRodada.add(espaco);
+        telaRodada.add(linha4);
+        telaRodada.add(opcao);
+        telaRodada.add(linha5);
+        telaRodada.add(linha6);
+        telaRodada.add(linha7);
+        telaRodada.add(linha8);
+        telaRodada.add(espaco);
+    
+        while (!control) {
+            int preenchimento= JOptionPane.showConfirmDialog(telaRodada, telaRodada, "ATAQUE MALUCO",
+                    JOptionPane.OK_CANCEL_OPTION);
+            if (preenchimento == JOptionPane.OK_OPTION) { //Atacante realizou uma ação
+                
+                try {
+                    opc= Integer.parseInt(opcao.getText());
+
+                    switch (opc) {
+                        case 1:                        
+                            break;
+                        case 2:                    
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            //VERIFICAR SE O ATACANTE PODE DESISTIR
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null,
+                                "Erro: Opção inválida!", 
+                                "Preenchimento incorreto", JOptionPane.ERROR_MESSAGE);
+                            break;
+                    }
+
+                    control= true;
+
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null,
+                        "Erro: Possiveis causas:\n            1- Campo em branco;\n            2- Informado caractere inválido (deve ser número).",
+                        "Preenchimento incorreto", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+                
+            else { //Atacante pulou a vez
+                opc= 3;
+                control= true;
+            }
+        }
+
+        return opc;
     }
 
     public boolean jogo(boolean jogo, Jogador jogador1, Jogador jogador2) {
+        Principal chamar= new Principal();
+        int rodada= 0, opc= 0;
+        boolean control= false;
         
+        while (!control) { //Jogo rolando
+            boolean control1= false;
+            rodada++;
+
+            while (!control1) { //Rodada rolando
+
+                opc= chamar.telaJogo(opc, rodada, jogador1, jogador2); //Necessário colocar a tela em uma função separada para que, sempre que ela seja chamada, a tela seja criada novamente(atualizada as variaveis)
+                
+                switch (opc) {
+                    case 1:
+                        control= chamar.ataque(control1, jogador1, jogador2);
+                        break;
+    
+                    case 2:
+                        chamar.exibirDetalhes(jogador1, jogador2);
+                        break;
+
+                    case 3:
+                        control1= true;
+                        break;
+
+                    case 4:
+                        control= true; 
+                        control1= true;
+                        break;
+                }
+                
+            }
+                        
+        }
 
         return jogo;
     }
 
-    public boolean testePreenchimento(boolean control, String nomeJog1, String nomeJog2) {
-        boolean control1=false;
+    public boolean testePreenchimento(boolean teste, String nomeJog1, String nomeJog2) {
+        boolean control=false;
 
-        while (!control1) {
+        while (!control) {
 
             if (nomeJog1.trim().isEmpty()&&nomeJog2.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Erro: Obrigatório preencher o nome dos Jogadores",
                         "Preenchimento incorreto", JOptionPane.ERROR_MESSAGE);
-                control1= true;
-                control= false;
+                control= true;
+                teste= false;
             }
     
             else if (nomeJog1.trim().isEmpty()&&!nomeJog2.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Erro: Obrigatório preencher o nome do Jogador 1",
                         "Preenchimento incorreto", JOptionPane.ERROR_MESSAGE);
-                control1= true;
-                control= false;
+                control= true;
+                teste= false;
             }
     
             else if (!nomeJog1.trim().isEmpty()&&nomeJog2.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Erro: Obrigatório preencher o nome do Jogador 2",
                         "Preenchimento incorreto", JOptionPane.ERROR_MESSAGE);
-                control1= true;
-                control= false;
+                control= true;
+                teste= false;
             }
 
             else {
-                control1= true;
                 control= true;
+                teste= true;
             }
         }
 
-        return control;
+        return teste;
     }
 
-    public boolean cadastrarJog(boolean control, Jogador jogador1, Jogador jogador2) {
+    public boolean cadastrarJog(boolean cadastro, Jogador jogador1, Jogador jogador2) {
         Principal chamar= new Principal();
-        boolean control1= true;
+        boolean control= true;
 
         JPanel telaCad= new JPanel();
         telaCad.setLayout(new BoxLayout(telaCad, BoxLayout.Y_AXIS));
@@ -98,7 +236,7 @@ public class Principal {
 
         JOptionPane.showMessageDialog(null, "O jogo será iniciado assim que preenchido o nome dos jogadores!\n\n", 
                         "Iniciando...", JOptionPane.INFORMATION_MESSAGE);
-        while (!control) {
+        while (!cadastro) {
             int preenchimento= JOptionPane.showConfirmDialog(telaCad, telaCad, "Cadastro de Jogador",
                     JOptionPane.OK_CANCEL_OPTION);
 
@@ -106,24 +244,24 @@ public class Principal {
                 String nomeJog1= campoNome1.getText();
                 String nomeJog2= campoNome2.getText();
 
-                if (control1= chamar.testePreenchimento(!control1, nomeJog1, nomeJog2)) {
-                    jogador1.setJogador(nomeJog1, 100, 100);
-                    jogador2.setJogador(nomeJog2, 100, 100);
+                if (control= chamar.testePreenchimento(!control, nomeJog1, nomeJog2)) {
+                    jogador1.setJogador(nomeJog1, 0, 200);
+                    jogador2.setJogador(nomeJog2, 0, 200);
                     JOptionPane.showMessageDialog(null, "Jogadores cadastrados com sucesso.\n", 
                         "Cadastro realizado!", JOptionPane.INFORMATION_MESSAGE);
-                    control = true;
+                    cadastro = true;
                 }
                 
             }
                 
             else {
                 System.out.println("\nFoi cancelado o cadastro do Jogador!");
-                control = true;
+                cadastro = true;
             }
 
         }
 
-        return control;
+        return cadastro;
     }
     
     public static void main(String[] args) {
@@ -153,7 +291,7 @@ public class Principal {
             switch (opc) {
                 case 1:
                     control1= chamar.cadastrarJog(!control1, jogador1, jogador2);
-                    control1= chamar.jogo(control1, jogador1, jogador2);
+                    control1= chamar.jogo(!control1, jogador1, jogador2);
                     break;
 
                 case 2:
