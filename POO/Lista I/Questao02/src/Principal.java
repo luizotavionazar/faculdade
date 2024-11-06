@@ -529,8 +529,7 @@ public class Principal {
             switch (opcao) {
                 case 1:
                     System.out.println("\nA tela do jogo abriu em algum lugar, se não acha-la tecle 'Alt+Tab' para encontrar a janela!\n");
-                    control1= chamar.cadastrarJog(!control1, jogador1, jogador2);
-                    if (control1) {
+                    if (control1= chamar.cadastrarJog(!control1, jogador1, jogador2)) {
                         control1= chamar.jogo(!control1, jogador1, jogador2);
                     }
                     break;
