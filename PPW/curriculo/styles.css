@@ -1,6 +1,33 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 50px;
     font-family: 'Trebuchet MS', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: #0079C6;
+}
+
+p a {
+    text-decoration: none;
+    color: #fff;
+}
+
+p a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+h2 {
+    margin: 20px 0px 0px;
 }
 
 .header {
@@ -9,23 +36,9 @@ body {
     padding: 15px;
 }
 
-.container {
+.colunas {
     display: flex; /* Usando flexbox para dividir em duas colunas */
     padding: 0px;
-}
-
-.left {
-    flex: 1; /* Lado esquerdo ocupa 1 parte do espaço */
-    padding: 10px;
-    box-sizing: border-box; /* Inclui o padding no total da largura */
-    background-color: #CDE4F4; /* Cor do lado esquerdo */
-}
-
-.right {
-    flex: 2; /* Lado direito ocupa 2 partes do espaço */
-    padding: 10px;
-    box-sizing: border-box; /* Inclui o padding no total da largura */
-    background-color: #FFFFFF; /* Cor do lado direito */
 }
 
 .conteudo {
@@ -34,4 +47,30 @@ body {
     padding: 0px;        
     background-color: #FFFFFF;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.esquerda {
+    flex: 1; /* Lado esquerdo ocupa 1 parte do espaço */
+    padding: 10px;
+    box-sizing: border-box; /* Inclui o padding no total da largura */
+    background-color: #CDE4F4; /* Cor do lado esquerdo */
+    position: relative;
+}
+
+.direita {
+    flex: 2; /* Lado direito ocupa 2 partes do espaço */
+    padding: 10px;
+    box-sizing: border-box; /* Inclui o padding no total da largura */
+    background-color: #FFFFFF; /* Cor do lado direito */
+}
+
+.topo {
+    position: fixed;
+    bottom: 0;
+    right: 50px;
+    background-color: #0079C6;
+    border: #333;
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
 }
