@@ -287,7 +287,7 @@ public class Principal {
 
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null,
-                        "Erro: Possiveis causas:\n            1- Campo em branco;\n            2- Informado caractere inválido (deve ser número).",
+                        "Erro: Possiveis causas:\n            1- Campo em branco;\n            2- Informado caractere inválido (deve ser número inteiro).",
                         "Preenchimento incorreto", JOptionPane.ERROR_MESSAGE);
                     System.out.println("LOG:: Campo em branco ou preenchido incorretamente");
                 }
@@ -387,7 +387,7 @@ public class Principal {
                 telaFim.add(linha2);
                 JLabel espaco1= new JLabel(" ");
                 telaFim.add(espaco1);
-                JLabel linha3= new JLabel(vencedor+" Ganhou a partida com "+pontosV+" pontos e "+energiaV+" de Energia");
+                JLabel linha3= new JLabel(vencedor+" ganhou a partida com "+pontosV+" pontos e "+energiaV+" de Energia");
                 linha3.setFont(fonteItalico);
                 telaFim.add(linha3);
                 JLabel espaco2= new JLabel(" ");
@@ -402,8 +402,6 @@ public class Principal {
                     linha4.setFont(fonteItalico);
                     telaFim.add(linha4);
                 }
-                
-                
                 
                 JLabel espaco3= new JLabel(" ");
                 telaFim.add(espaco3);
