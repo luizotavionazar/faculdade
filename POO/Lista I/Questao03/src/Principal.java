@@ -1,20 +1,22 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.awt.Font;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 public class Principal {
 
     public void menu(Aluno aluno1) {
-        int opc= 2;
         System.out.println("\n==-==-==-==-==-==-==-==-==-==-==");
         System.out.println("        DADOS DO ALUNO");
         System.out.println("==-==-==-==-==-==-==-==-==-==-==");
-        System.out.println("    1 > Cadastrar Aluno");
-        System.out.println("    2 > Atribuir notas");
+        if (aluno1.getNome() == null) {
+            System.out.println("    1 > Cadastrar Aluno");
+        } else {
+            System.out.println("    1 > Alterar Aluno");
+        }
+        if (aluno1.getNota1() == -1) {
+            System.out.println("    2 > Atribuir notas");
+        } else {
+            System.out.println("    2 > Alterar notas");
+        }
         System.out.println("    3 > Status do aluno");
         System.out.println("    4 > Sair");
         System.out.println("==-==-==-==-==-==-==-==-==-==-==\n");
@@ -117,11 +119,14 @@ public class Principal {
                             System.out.println("\nNotas atribuidas com sucesso!");
                         }
                     }
-                    System.out.println(aluno1.getNota1());
                     break;
 
                 case 3:
+                if (aluno1.getNota1() == -1) {
+                    System.out.println("\nNecessário atribuir as Notas do aluno primeiro!");
+                } else {
                     chamar.exibirStatus(aluno1);
+                }
                     break;
                 
                 case 4:
