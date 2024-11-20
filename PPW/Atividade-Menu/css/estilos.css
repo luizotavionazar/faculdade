@@ -1,18 +1,21 @@
 body {
     padding: 0;
     margin: 0;
+    background-image: url('https://img.freepik.com/fotos-premium/fundo-desfocado-brilhante-e-claro-verde-pastel_578229-35.jpg');
+    background-size: cover;
 }
 
 .menu { /* Menu é uma tag UL */
     margin: 0; /* Removendo os padrões do Navegador */
     padding: 0; /* Removendo os padrões do Navegador */
     list-style: none; /* Removendo os padrões do Navegador */
-    background-color: #189fff99;
+    background: linear-gradient(0deg, rgb(10, 204, 0), rgb(129, 255, 122));
 }
 
 .menu li {
     float: left;
-    margin-left: 20px;
+    margin-left: 10px 20px;
+    position: relative;
 }
 
 .menu li a {
@@ -22,8 +25,46 @@ body {
     display: block;
 }
 
+.menu li ul {
+    background: linear-gradient(0deg, rgb(129, 255, 122), rgb(10, 204, 0));
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0px 2px 5px #000;
+}
+
+.menu li:hover > ul {
+    display: block;
+}
+
+.menu li ul li {
+    float: none;
+    margin-left: 0;
+}
+
+.menu li ul li ul {
+    top: 0;
+    left: 99%;
+    background: linear-gradient(0deg, rgb(10, 204, 0), rgb(129, 255, 122));
+}
+
+.menu li ul a:hover {
+    display: block;
+    border-radius: 0 0 10px 10px;
+}
+
+.menu li ul li {
+    float: none;
+    margin-left: 0;
+}
+
 .menu li a:hover {
-    background-color: #189fff99;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .fix {
