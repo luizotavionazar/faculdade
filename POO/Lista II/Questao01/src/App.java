@@ -6,15 +6,12 @@ import java.util.Iterator;
 public class App {
 
     public void menu() {
-        System.out.println("\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-        System.out.println("           BIBLIOTECA");
-        System.out.println("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+        System.out.println("\n                  BIBLIOTECA\n");
         System.out.println("  1 > Adicionar livro");
         System.out.println("  2 > Exibir livros");
         System.out.println("  3 > Buscar livros por autor");
         System.out.println("  4 > Buscar livros por ano de publicação");
-        System.out.println("  5 > Sair");
-        System.out.println("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n");
+        System.out.println("  5 > Sair\n");
     }
 
     public static void main(String[] args) {
@@ -44,24 +41,20 @@ public class App {
     
             switch (opc) {
                 case 1:
-                    if (chamarBiblioteca.adicionarLivro(livros, iterat)) {
-                        System.out.println("Livro cadastrado com sucesso!");
-                    } else {
-                        System.out.println("Não foi possivel cadastrar o livro...");
-                    }
+                    chamarBiblioteca.adicionarLivro(livros);
                     break;
     
                 case 2:
-                    
+                    chamarBiblioteca.exibirLivros(livros, iterat);  
                     break;
     
                 case 3:
-                    
+                    chamarBiblioteca.buscarLivro(livros, iterat, "T");
                     break;
                 
                 case 4:
-                 
-                break;
+                    chamarBiblioteca.buscarLivro(livros, iterat, "A");
+                    break;
 
                 case 5:
                     control= false;
