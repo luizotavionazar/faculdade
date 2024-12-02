@@ -20,4 +20,10 @@ public class Livro {
     public int getAnoPublicacao() {
         return anoPublicacao;
     }
+
+    @Override
+    public String toString() {
+        return "[Titulo= " + titulo + ", Autor= " + autor + ", Ano de Publicacao= " + anoPublicacao + "]";
+    }
+
 }

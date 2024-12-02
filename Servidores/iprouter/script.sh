@@ -1,35 +1,45 @@
 #!/bin/bash
 
 echo
-
-echo ----------------------------
-echo 	    MENU DE REDE
-echo ----------------------------
-echo    1 - Adicionar IP
-echo    2 - Adicionar DNS
-echo    3 - Opções da interface
-echo ----------------------------
-echo
-
-echo aread a-p "O que deseja fazer? "
-
 echo Com esse script você pode adicionar um novo IP ao host!
-echo
 
+echo
+echo Instalando Ip Router...
+echo
+apt-get install iproute2
+
+echo
+echo Instalado!
+
+echo
 read -p "Informe o endereço IP que deseja adicionar: " ip
+echo $ip
+
 echo
-
 read -p "Informe a interface utilizada: " interface
+echo $interface
 
-sudo ip addr add $ip dev $interface
+ip addr add $ip dev $interface
 
+echo
+echo IP $ip adicionado a Interface $interface !!
+
+echo
 echo Agora vamos alterar o DNS...
 
-read -p "Informe o DNS desejado: " dns1
-
-echo $ip
-echo $interface
 echo
+read -p "Informe o 1º DNS desejado: " dns1
+echo $dns1
 
+echo
+read -p "Agora, o 2º DNS desejado: " dns2
+echo $dns2
 
-  sudo ifconfig enp4s0f0 192.168.21.12 netmask 255.255.255.192 up
+echo "nameserver $dns1" > /etc/resolv.conf
+echo "nameserver $dns2" >> /etc/resolv.conf
+
+echo
+echo DNSs alterados !!
+
+echo
+echo Acabou, tchau :D
