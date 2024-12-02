@@ -20,4 +20,10 @@ public class Funcionario {
     public double getSalario() {
         return salario;
     }
+
+    @Override
+    public String toString() {
+        return "[Nome= " + nome + ", Cargo= " + cargo + ", Salário= " + salario + "]";
+    }
+
 }   
