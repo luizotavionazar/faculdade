@@ -11,7 +11,7 @@ public class App {
         System.out.println("  2 > Encerrar reserva");
         System.out.println("  3 > Buscar reserva");
         System.out.println("  4 > Receita total");
-        System.out.println(  "5 > Reservas ativas");
+        System.out.println("  5 > Reservas ativas");
         System.out.println("  6 > Sair\n");
     }
 
@@ -79,5 +79,5 @@ public class App {
 
         in.close();
     }
-    
+
 }
