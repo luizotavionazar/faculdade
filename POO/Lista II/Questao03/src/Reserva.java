@@ -1,10 +1,10 @@
 public class Reserva {
     private Quarto quarto;
     private Hospede hospede;
-    private double numeroDias;
+    private int numeroDias;
     private String dataReserva;
 
-    public Reserva (Quarto quarto, Hospede hospede, double numeroDias, String dataReserva) {
+    public Reserva (Quarto quarto, Hospede hospede, int numeroDias, String dataReserva) {
         this.quarto= quarto;
         this.hospede= hospede;
         this.numeroDias= numeroDias;
@@ -19,7 +19,7 @@ public class Reserva {
         return hospede;
     }
 
-    public double getNumDias() {
+    public int getNumDias() {
         return numeroDias;
     }
 
