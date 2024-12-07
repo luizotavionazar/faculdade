@@ -18,16 +18,11 @@ public class App {
     public static void main(String[] args) {
         Scanner in= new Scanner(System.in);
         App chamarMain= new App();
-        Hotel chamarHotel= new Hotel();
-        ArrayList<Quarto> quartos= new ArrayList<>();
-        ArrayList<Hospede> hospedes= new ArrayList<>();
-        ArrayList<Reserva> reservas= new ArrayList<>();
-        Iterator<Quarto> iteratQ= quartos.iterator();
-        Iterator<Hospede> iteratH= hospedes.iterator();
-        Iterator<Reserva> iteratR= reservas.iterator();
+        Hotel chamarHotel= new Hotel(in);
 
         boolean control= true, control1= true;
         int opc= 0;
+        String dataFim= null;
 
         while (control) {
             chamarMain.menu();
@@ -46,23 +41,23 @@ public class App {
     
             switch (opc) {
                 case 1:
-                    chamarHotel.adicionarReserva(reservas, iteratR, 0, "");
+                    chamarHotel.adicionarReserva(0, "", dataFim);
                     break;
     
                 case 2:
-                    chamarHotel.cancelarReserva(reservas, iteratR);
+                    //chamarHotel.cancelarReserva(reservas, iteratR);
                     break;
     
                 case 3:
-                    chamarHotel.procurarReserva(reservas, iteratR);
+                    //chamarHotel.procurarReserva(reservas, iteratR);
                     break;
                 
                 case 4:
-                    chamarHotel.calcularReceita(reservas, iteratR);
+                    //chamarHotel.calcularReceita(reservas, iteratR);
                     break;
                 
                 case 5:
-                    chamarHotel.listarReservas(reservas, iteratR);
+                    //chamarHotel.listarReservas(reservas, iteratR);
                     break;
 
                 case 6:

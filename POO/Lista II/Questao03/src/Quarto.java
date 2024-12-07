@@ -19,5 +19,13 @@ public class Quarto {
     public String toString() {
         return "[Quarto= " + numeroQuarto + ", Valor= R$" + valorDiaria + "por Noite]";
     }
-    
+
+    public void setNumeroQuarto(int numeroQuarto) {
+        this.numeroQuarto = numeroQuarto;
+    }
+
+    public void setValorDiaria(double valorDiaria) {
+        this.valorDiaria = valorDiaria;
+    }
+        
 }

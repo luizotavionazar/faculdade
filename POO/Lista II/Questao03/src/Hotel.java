@@ -4,12 +4,27 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Hotel {
-    
-    public void adicionarReserva(ArrayList<Reserva> reservas, Iterator<Reserva> iteratR, float qtdDias, String dataReserva) {
-        Scanner in= new Scanner(System.in);
+        public ArrayList<Quarto> quartos;
+        public ArrayList<Hospede> hospedes;
+        public Iterator<Quarto> iteratQ;
+        public ArrayList<Reserva> reservas;
+        public Iterator<Reserva> iteratR;
+        public Iterator<Hospede> iteratH;
+        Scanner in;
+        
+    public Hotel(Scanner in) {
+        this.in= in;
+        ArrayList<Quarto> quartos = new ArrayList<>();
+        ArrayList<Hospede> hospedes = new ArrayList<>();
+        ArrayList<Reserva> reservas = new ArrayList<>();
+        Iterator<Quarto> iteratQ = quartos.iterator();
+        Iterator<Reserva> iteratR = reservas.iterator();
+        Iterator<Hospede> iteratH = hospedes.iterator();
+    }
 
+    public void adicionarReserva(float qtdDias, String dataReserva, String dataFim) {
         int quarto= 0, dia= 0, mes= 0, ano= 0, dias= 0;
-        int cpf=0, telefone= 0; //avaliar um tipo que caiba o numero grande, transformar em vetor?
+        String cpf= null, telefone= null;
         String cidade= null, rua= null, bairro= null, numero= null;
         boolean control= true;
         
@@ -37,6 +52,8 @@ public class Hotel {
                 } 
             } while (!control);
         } while (!control);
+
+        
 
         do {
             System.out.print("\n    > Número do quarto..: ");
@@ -74,15 +91,17 @@ public class Hotel {
 
         System.out.println("-Endereço\n");
         for (int i = 1; i <= 4; i++) {
-            if (i==1 && cidade==null) { System.out.print("Cidade..: "); } else if (i<=2 && rua==null) { //next bugou aqui, pedir ajuda pro jhonnie
-                                            System.out.print("   Rua..: "); } else if (i<=3 && bairro==null) {
-                                            System.out.print(" Bairro.: "); } else if (i<=4 && numero==null) {
-                                            System.out.print(" Número.: "); }
-            if (i==1 && cidade==null) { cidade= in.nextLine(); } else if (i<=2 && rua==null) {
+            if (i==1 && cidade==null) { System.out.print("Cidade..: "); } else if (i<=2 && rua==null) {
+                                        System.out.print("   Rua..: "); } else if (i<=3 && bairro==null) {
+                                        System.out.print(" Bairro.: "); } else if (i<=4 && numero==null) {
+                                        System.out.print(" Número.: "); }
+            if (i==1 && cidade==null) { in.nextLine(); cidade= in.nextLine(); } else if (i<=2 && rua==null) {
                         rua= in.nextLine(); } else if (i<=3 && bairro==null) {
                         bairro= in.nextLine(); } else if (i<=4 && numero==null) {
                         numero= in.nextLine(); }
         }
+
+        reservas.add(new Reserva(null, null, dias, dataReserva));
 
         System.out.println(dia);
         System.out.println(mes);
@@ -95,7 +114,6 @@ public class Hotel {
         System.out.println(rua);
         System.out.println(bairro);
         System.out.println(numero);
-
 
     }
 
