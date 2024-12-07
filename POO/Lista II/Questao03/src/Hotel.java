@@ -40,7 +40,7 @@ public class Hotel {
             in.nextLine(); tempData = in.nextLine();
             data = LocalDate.parse(tempData, dataForm);
             if (data.isBefore(hoje)) { //Verifica se a data é menor que hoje
-                System.out.println("\nData inválida! Deve ser Igual ou Maior que hoje\n");
+                System.out.println("\nData inválida! Deve ser Igual ou Maior que hoje\n"); //ERRO QUANDO INFORMADA UMA DATA INVALIDA PRIMEIRO, PEDIR AJUDA PRO JHONNIE
                 control= false;
             } else {
                 control=true;
@@ -86,9 +86,9 @@ public class Hotel {
             quartos.add(novoQuarto);
         }
     
-        //Verificar a disponibilidade do quarto aqui
+        //Verificar a disponibilidade do quarto aqui considerando o status da reserva
 
-        System.out.println("\n > Cadastro do Hospede");
+        System.out.println("\n > Seleção do Hospede");
         System.out.print("       CPF...: "); in.nextLine(); cpf = in.nextLine();
         
         iteratH = hospedes.iterator();
@@ -100,24 +100,27 @@ public class Hotel {
             }
         }
         
-        if (!hospedeExis) { // Cria o hóspede se ele não existir
+        if (!hospedeExis) { //Cria o hóspede se ele não existir
+            System.out.println("Novo Hospede.:");
             System.out.print("  Telefone...: "); telefone = in.nextLine();
             System.out.println("  Endereço...:");
             System.out.print("    Cidade...: "); cidade = in.nextLine();
             System.out.print("       Rua...: "); rua = in.nextLine();
             System.out.print("    Bairro...: "); bairro = in.nextLine();
             System.out.print("    Número...: "); numero = in.nextLine();
-            String endereco = cidade + ", " + rua + ", " + bairro + ", " + numero;
+            String endereco = "Cidade:" + cidade + ", Rua: " + rua + ", Bairro: " + bairro + ", Número: " + numero;
             Hospede novoHospede = new Hospede(cpf, endereco, telefone);
             hospedes.add(novoHospede);
         }
         
-        Reserva novaReserva = new Reserva(quarto, cpf, qtdDias, data, dataFim); //Cria a Reserva
-        reservas.add(novaReserva); 
+        Reserva novaReserva = new Reserva(quarto, cpf, qtdDias, data, dataFim,true); //Cria a Reserva
+        reservas.add(novaReserva);
         
+        System.out.println("\n >> RESERVA CADASTRADA COM SUCESSO");
+
         // Exibe a lista de quartos
         System.out.println("\nLista de Quartos:");
-        iteratQ = quartos.iterator(); // Reinicializa o iterador para os quartos
+        iteratQ = quartos.iterator();
         while (iteratQ.hasNext()) {
             Quarto tempQuarto = iteratQ.next();
             System.out.println(tempQuarto);
@@ -125,7 +128,7 @@ public class Hotel {
         
         // Exibe a lista de hóspedes
         System.out.println("\nLista de Hóspedes:");
-        iteratH = hospedes.iterator(); // Reinicializa o iterador para os hóspedes
+        iteratH = hospedes.iterator();
         while (iteratH.hasNext()) {
             Hospede tempHospede = iteratH.next();
             System.out.println(tempHospede);
@@ -146,6 +149,7 @@ public class Hotel {
 
     public void listarReservas() {
         System.out.println("\nLista de Reservas:");
+        iteratR = reservas.iterator();
         while (iteratR.hasNext()) { 
             Reserva tempReserva = iteratR.next();
             System.out.println(tempReserva);
