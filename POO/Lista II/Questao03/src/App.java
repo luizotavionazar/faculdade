@@ -54,7 +54,7 @@ public class App {
                     break;
                 
                 case 5:
-                    //chamarHotel.listarReservas(reservas, iteratR);
+                    chamarHotel.listarReservas();
                     break;
 
                 case 6:
