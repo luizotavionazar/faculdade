@@ -1,7 +1,5 @@
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.Iterator;
 
 public class App {
 
@@ -22,7 +20,6 @@ public class App {
 
         boolean control= true, control1= true;
         int opc= 0;
-        String dataFim= null;
 
         while (control) {
             chamarMain.menu();
@@ -41,7 +38,7 @@ public class App {
     
             switch (opc) {
                 case 1:
-                    chamarHotel.adicionarReserva(0, "", dataFim);
+                    chamarHotel.adicionarReserva();
                     break;
     
                 case 2:

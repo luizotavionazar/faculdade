@@ -1,15 +1,13 @@
 public class Hospede {
-    private int cpf;
-    private String endereco;
-    private int telefone;
+    private String cpf, endereco, telefone;
 
-    public Hospede (int cpf, String endereco, int telefone) {
+    public Hospede (String cpf, String endereco, String telefone) {
         this.cpf= cpf;
         this.endereco= endereco;
         this.telefone= telefone;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
@@ -17,7 +15,7 @@ public class Hospede {
         return endereco;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 

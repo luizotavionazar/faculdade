@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Iterator;
@@ -14,49 +16,33 @@ public class Hotel {
         
     public Hotel(Scanner in) {
         this.in= in;
-        ArrayList<Quarto> quartos = new ArrayList<>();
-        ArrayList<Hospede> hospedes = new ArrayList<>();
-        ArrayList<Reserva> reservas = new ArrayList<>();
-        Iterator<Quarto> iteratQ = quartos.iterator();
-        Iterator<Reserva> iteratR = reservas.iterator();
-        Iterator<Hospede> iteratH = hospedes.iterator();
+        this.quartos = new ArrayList<>();
+        this.hospedes = new ArrayList<>();
+        this.reservas = new ArrayList<>();
+        this.iteratQ = quartos.iterator();
+        this.iteratR = reservas.iterator();
+        this.iteratH = hospedes.iterator();
     }
 
-    public void adicionarReserva(float qtdDias, String dataReserva, String dataFim) {
-        int quarto= 0, dia= 0, mes= 0, ano= 0, dias= 0;
-        String cpf= null, telefone= null;
+    public void adicionarReserva() {
+        int quarto= 0;
+        String cpf= null, telefone= null, tempData= null;
         String cidade= null, rua= null, bairro= null, numero= null;
         boolean control= true;
+        DateTimeFormatter dataForm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         
-        System.out.println("    > Cadastro de Reserva\n");
+        System.out.println("\n >> CADASTRO DE RESERVA\n");
 
-        do { 
-            control= false;
-            do {
-                for (int i = 1; i <= 4; i++) {
-                    if (i==1 && dia==0) { System.out.print("Data Inicio: Dia..: "); } else if (i<=2 && mes==0) {
-                                          System.out.print("             Mês..: "); } else if (i<=3 && ano==0) {
-                                          System.out.print("             Ano..: "); } else if (i<=4 && dias==0) { 
-                                          System.out.print("\nQtd Diárias.......: "); }
-                    try {
-                        if (i==1 && dia==0) { dia= in.nextInt(); control= true; } else if (i<=2 && mes==0) {
-                                    mes= in.nextInt(); control= true; } else if (i<=3 && ano==0) {
-                                    ano= in.nextInt(); control= true; } else if (i<=4 && dias==0) {
-                                    dias= in.nextInt(); control= true; }
-                    } catch (InputMismatchException e) {
-                        System.out.println("\nInforme um valor válido!\n");
-                        in.next();
-                        control= false;
-                        break;
-                    }
-                } 
-            } while (!control);
-        } while (!control);
+        System.out.print("Data Inicio (DD/MM/AAAA): ");
+        in.nextLine(); tempData= in.nextLine();
+        LocalDate data=LocalDate.parse(tempData, dataForm);
 
-        
+        System.out.print(" > Quantidade de Dias...: ");
+        int qtdDias=in.nextInt();
+        LocalDate dataFim=data.plusDays(qtdDias);
 
         do {
-            System.out.print("\n    > Número do quarto..: ");
+            System.out.print("\n > Número do Quarto.....: ");
                 try {
                     quarto= in.nextInt();
                     control= true;
@@ -66,54 +52,51 @@ public class Hotel {
                     control= false;
                 }
         } while (!control);
+
+        Quarto novoQuarto = new Quarto(quarto); //Cria o Quarto
+        quartos.add(novoQuarto);
+        iteratQ = quartos.iterator(); 
         
         //AQUI Validar a disponibilidade do quarto
 
-        System.out.println("    > Cadastro do Hospede\n");
-        do {
-            control=false;
-            do {
-                for (int i = 1; i <= 2; i++) {
-                    if (i==1 && cpf==0) { System.out.print("     CPF..: "); } else if (i<=2 && telefone==0) {
-                                          System.out.print("Telefone..: "); }
-                    try {
-                        if (i==1 && cpf==0) { cpf= in.nextInt(); control= true; } else if (i<=2 && telefone==0) {
-                                    telefone= in.nextInt(); control= true; }
-                    } catch (InputMismatchException e) {
-                        System.out.println("\nInforme um valor válido!\n");
-                        in.next();
-                        control= false;
-                        break;
-                    }
-                }
-            } while (!control);
-        } while (!control);
+        System.out.println("\n > Cadastro do Hospede");
+        System.out.print("       CPF...: "); in.nextLine(); cpf= in.nextLine();
+        System.out.print("  Telefone...: "); telefone= in.nextLine();
+        System.out.println("  Endereço...:");
+        System.out.print("    Cidade...: "); cidade= in.nextLine();
+        System.out.print("       Rua...: "); rua= in.nextLine();
+        System.out.print("    Bairro...: "); bairro= in.nextLine();
+        System.out.print("    Número...: "); numero= in.nextLine();
+        String endereco= cidade+", "+rua+", "+bairro+", "+numero;
 
-        System.out.println("-Endereço\n");
-        for (int i = 1; i <= 4; i++) {
-            if (i==1 && cidade==null) { System.out.print("Cidade..: "); } else if (i<=2 && rua==null) {
-                                        System.out.print("   Rua..: "); } else if (i<=3 && bairro==null) {
-                                        System.out.print(" Bairro.: "); } else if (i<=4 && numero==null) {
-                                        System.out.print(" Número.: "); }
-            if (i==1 && cidade==null) { in.nextLine(); cidade= in.nextLine(); } else if (i<=2 && rua==null) {
-                        rua= in.nextLine(); } else if (i<=3 && bairro==null) {
-                        bairro= in.nextLine(); } else if (i<=4 && numero==null) {
-                        numero= in.nextLine(); }
+        Hospede novoHospede = new Hospede(cpf, endereco, telefone); //Cria o Hospede
+        hospedes.add(novoHospede);
+        iteratH = hospedes.iterator();
+
+        Reserva novaReserva = new Reserva(quarto, cpf, qtdDias, data, dataFim); //Cria a reserva
+        reservas.add(novaReserva);
+        iteratR = reservas.iterator();
+
+        // Exibindo os quartos cadastrados após adicionar o novo quarto
+        System.out.println("\nLista de Quartos:");
+        while (iteratQ.hasNext()) { // Percorre a lista enquanto há elementos
+            Quarto tempQuarto = iteratQ.next(); // Obtém o próximo elemento
+            System.out.println(tempQuarto); // Exibe o quarto (invoca automaticamente o toString)
         }
 
-        reservas.add(new Reserva(null, null, dias, dataReserva));
+        // Exibindo os hóspedes cadastrados
+        System.out.println("\nLista de Hóspedes:");
+        while (iteratH.hasNext()) { 
+            Hospede tempHospede = iteratH.next();
+            System.out.println(tempHospede);
+        }
 
-        System.out.println(dia);
-        System.out.println(mes);
-        System.out.println(ano);
-        System.out.println(dias);
-        System.out.println(quarto);
-        System.out.println(cpf);
-        System.out.println(telefone);
-        System.out.println(cidade);
-        System.out.println(rua);
-        System.out.println(bairro);
-        System.out.println(numero);
+        // Exibindo as reservas
+        System.out.println("\nLista de Reservas:");
+        while (iteratR.hasNext()) { 
+            Reserva tempReserva = iteratR.next();
+            System.out.println(tempReserva);
+        }
 
     }
 
