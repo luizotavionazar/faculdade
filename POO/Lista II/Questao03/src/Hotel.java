@@ -42,13 +42,13 @@ public class Hotel {
                 tempData = in.nextLine();
                 data = LocalDate.parse(tempData, dataForm);
                 if (data.isBefore(hoje)) { //Verifica se a data é menor que hoje
-                    System.out.println("Data inválida, deve ser maior ou igual à hoje!!\n");
+                    System.out.println("Data inválida, deve ser maior ou igual à hoje!\n");
                     control= false;
                 } else {
                     control=true;
                 }
             } catch (Exception e) {
-                System.out.println("Formato de Data inválida, verifique a inserção!!\n");
+                System.out.println("Formato de Data inválida, verifique a inserção!\n");
                 control= false;
             }
         } while (!control);
@@ -75,7 +75,7 @@ public class Hotel {
                     quarto = in.nextInt();
                     control = true;
                 } catch (InputMismatchException e) {
-                    System.out.println("Informe um valor válido!\n");
+                    System.out.println("Informe um valor válido!");
                     in.next();
                     control = false;
                 }
@@ -138,19 +138,20 @@ public class Hotel {
         in.nextLine();
         do { //Inserção e validação do CPF
             System.out.print("   CPF........: "); cpf = in.nextLine();
-                    cpf= cpf.replaceAll("[.\\-\\s]", ""); //Remove caracteres especiais
-                    //Anotação: \\s: Representa qualquer espaço em branco. Incluindo: Espaços, Tabulação, Quebras de linha
-                    //Anotação: \\-: O '-' precisa ser sucessor a barra invertida pois, somente o traço, é interpretado como um intervalo de caracteres.
-                    
-                    if (cpf.length() != 11 || !cpf.matches("\\d+")) { //Valida se tem 11 dígitos e a inserção de caractere não númericos
-                        System.out.println("CPF Inválido, verifique a quantidade e os caracteres inseridos!\n");
-                        control= false;
-                    } else if (cpf.chars().distinct().count() == 1) { //Verifica se os digitos do CPF são iguais
-                        System.out.println("CPF Inválido, verifique a inserção!\n");
-                        control= false;
-                    } else { //CPF Válido
-                        control= true;
-                    }
+            cpf= cpf.replaceAll("[.\\-\\s]", ""); //Remove caracteres especiais
+            //Anotação: \\s: Representa qualquer espaço em branco. Incluindo: Espaços, Tabulação, Quebras de linha
+            //Anotação: \\-: O '-' precisa ser sucessor a barra invertida pois, somente o traço, é interpretado como um intervalo de caracteres.
+            
+            if (cpf.length() != 11 || !cpf.matches("\\d+")) { //Valida se tem 11 dígitos e a inserção de caractere não númericos
+                System.out.println("CPF Inválido, verifique a quantidade e os caracteres inseridos!\n");
+                control= false;
+            } else if (cpf.chars().distinct().count() == 1) { //Verifica se os digitos do CPF são iguais
+                System.out.println("CPF Inválido, verifique a inserção!\n");
+                control= false;
+            } else { //CPF Válido
+                control= true;
+            }
+
         } while (!control);
         
         iteratH = hospedes.iterator();
@@ -163,11 +164,26 @@ public class Hotel {
         }
         
         if (!hospedeExis) { //Cria o hóspede se ele não existir
-            System.out.print("   Telefone...: "); telefone = in.nextLine();
+            do { //Inserção e validação do Telefone, seguinda a mesma lógica do CPF
+                System.out.print("   Telefone...: "); telefone = in.nextLine();
+                telefone= telefone.replaceAll("[.\\-\\s()]", "");
+                    
+                if (telefone.length() <= 9 || telefone.length() > 13 || !telefone.matches("\\d+")) { //Telefone minimo: 998286294(Número sem DDD), Telefone máximo: 5538998286294(Código País + DDD + Número)
+                    System.out.println("Telefone Inválido, verifique a quantidade e os caracteres inseridos!\n");
+                    control= false;
+                } else if (telefone.chars().distinct().count() == 1) {
+                    System.out.println("Telefone Inválido, verifique a inserção!\n");
+                    control= false;
+                } else {
+                    control= true;
+                }
+
+            } while (!control);
             System.out.print("   Endereço | Cidade.....: "); cidade = in.nextLine();
             System.out.print("                 Rua.....: "); rua = in.nextLine();
             System.out.print("              Bairro.....: "); bairro = in.nextLine();
             System.out.print("              Número.....: "); numero = in.nextLine();
+
             String endereco = "Cidade: " + cidade + ", Rua: " + rua + ", Bairro: " + bairro + ", Número: " + numero;
             Hospede novoHospede = new Hospede(cpf, endereco, telefone);
             hospedes.add(novoHospede);
