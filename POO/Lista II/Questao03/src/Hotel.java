@@ -82,10 +82,13 @@ public class Hotel {
                 if (tempQuarto.getNumero() == quarto) {
                     quartoExis = true;
                     break;
-                } else { //Cria o quarto se ele não existir
-                    Quarto novoQuarto = new Quarto(quarto);
-                    quartos.add(novoQuarto);
                 }
+            }
+
+            if (!quartoExis) { //Cria o quarto se ele não existir
+                Quarto novoQuarto = new Quarto(quarto);
+                quartos.add(novoQuarto);
+                System.out.println("teste");
             }
     
             if (!reservas.isEmpty()) { //Se for a primeira reserva
@@ -94,11 +97,11 @@ public class Hotel {
                 while (iteratR.hasNext()) {
                     Reserva tempReserva= iteratR.next();
                     if (tempTempRes==null && tempReserva.getQuarto()==quarto) {
-                        iteratR = reservas.iterator(); //Quando a Data Inicial é antes da Data Inicial de outra reserva para o mesmo quarto, ele
-                        while (iteratR.hasNext()) {    //Verifica a Data Fim mais longe do quarto
+                        iteratR = reservas.iterator(); 
+                        while (iteratR.hasNext()) {    
                             tempTempRes = iteratR.next();
-                            if (tempTempRes.getQuarto()==tempReserva.getQuarto() &&
-                                (tempTempRes.getDataFim().isAfter(tempReserva.getDataFim()) ||
+                            if (tempTempRes.getQuarto()==tempReserva.getQuarto() &&            //Quando a Data Inicial é antes da Data Inicial de outra reserva para o mesmo quarto, ele
+                                (tempTempRes.getDataFim().isAfter(tempReserva.getDataFim()) || //Verifica a Data Fim mais longe do quarto
                                 tempTempRes.getDataFim().isEqual(tempReserva.getDataFim()))) {
                                 break;
                             }
@@ -113,7 +116,7 @@ public class Hotel {
                         if (tempReserva.getStatus()) { //Valida o quarto já reservado
                             if (!(tempReserva.getDataFim().isBefore(data) ||
                                 tempReserva.getDataReserva().isAfter(dataFim))) {
-                                System.out.println("Quarto já reservado até "+tempTempRes.getDataFim().format(dataForm)+", escolha outro!!");
+                                System.out.println("Quarto já reservado até "+tempTempRes.getDataFim().format(dataForm)+", escolha outro!!"); //Exibe a Data Fim mais longe do quarto naquele periodo
                                 control= false;
                                 break;
                             }
