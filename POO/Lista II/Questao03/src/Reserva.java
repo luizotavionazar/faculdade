@@ -8,6 +8,7 @@ public class Reserva {
     private LocalDate dataReserva;
     private LocalDate dataFim;
     private boolean status;
+    private double vlrTot;
     private DateTimeFormatter dataForm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Reserva (int quarto, String hospede, int numeroDias, LocalDate dataReserva, LocalDate dataFim, boolean status) {
@@ -17,6 +18,7 @@ public class Reserva {
         this.dataReserva= dataReserva;
         this.dataFim= dataFim;
         this.status= status;
+        this.vlrTot = ((quarto % 2 == 0) ? 80 : 60)*numeroDias;
     }
 
     public int getQuarto() {
@@ -43,6 +45,14 @@ public class Reserva {
         return status;
     }
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public double getVlrTot() {
+        return vlrTot;
+    }
+
     @Override
     public String toString() {
         String statusForm= null;
@@ -52,7 +62,7 @@ public class Reserva {
             statusForm= "ENCERRADA";
         }
         return "Reserva [Quarto= " + quarto + ", Hospede= " + hospede + ", Quantidade de Dias= " + numeroDias + 
-               ", Data da Reserva= "+ dataReserva.format(dataForm) + ", Data Fim= "+dataFim.format(dataForm)+", Status= "+statusForm+"]";
+               ", Data da Reserva= "+ dataReserva.format(dataForm) + ", Data Fim= "+dataFim.format(dataForm)+", Valor Total= R$"+vlrTot+", Status= "+statusForm+"]";
     }
 
 }

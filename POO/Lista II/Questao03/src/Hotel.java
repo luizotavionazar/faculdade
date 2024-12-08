@@ -124,7 +124,7 @@ public class Hotel {
                                 control= false;
                                 break;
                             }
-                        } else { //QUANDO ENCONTRADA RESERVA PARA O QUARTO MAS FOI CANCELADA, PROSSEGUE
+                        } else { //ERRO AQUI, PERMITE GRAVAR RESERVA EM QUARTO OCUPADO QUANDO ENCONTRADA RESERVA PARA O QUARTO MAS FOI CANCELADA, PROSSEGUE
                             control= true;
                             break;
                         }
@@ -168,7 +168,7 @@ public class Hotel {
                 System.out.print("   Telefone...: "); telefone = in.nextLine();
                 telefone= telefone.replaceAll("[.\\-\\s()]", "");
                     
-                if (telefone.length() <= 9 || telefone.length() > 13 || !telefone.matches("\\d+")) { //Telefone minimo: 998286294(Número sem DDD), Telefone máximo: 5538998286294(Código País + DDD + Número)
+                if (telefone.length() < 9 || telefone.length() > 13 || !telefone.matches("\\d+")) { //Telefone minimo: 998286294(Número sem DDD), Telefone máximo: 5538998286294(Código País + DDD + Número)
                     System.out.println("Telefone Inválido, verifique a quantidade e os caracteres inseridos!\n");
                     control= false;
                 } else if (telefone.chars().distinct().count() == 1) {
@@ -200,7 +200,7 @@ public class Hotel {
         //    Quarto tempQuarto = iteratQ.next();
         //    System.out.println(tempQuarto);
         //}
-        //
+        
         //System.out.println("\nLista de Hóspedes:");
         //iteratH = hospedes.iterator();
         //while (iteratH.hasNext()) {
@@ -209,24 +209,143 @@ public class Hotel {
         //}
     }
 
-    public void cancelarReserva(ArrayList<Reserva> reservas, Iterator<Reserva> iteratR) {
-        
+    public void cancelarReserva() {
+        int quarto= 0;
+        String tempData= null;
+        boolean control= true;
+        DateTimeFormatter dataForm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate data= null;
+
+        System.out.println("\n >> CANCELAMENTO DE RESERVA");
+
+        do {
+            boolean quartoExis = false;
+            control = true;
+            quarto= 0;
+            do {
+                System.out.print("\n > Número do Quarto........: ");
+                try {
+                    quarto = in.nextInt();
+                    control = true;
+                } catch (InputMismatchException e) {
+                    System.out.println("Informe um valor válido!");
+                    in.next();
+                    control = false;
+                }
+            } while (!control);
+            
+            iteratQ = quartos.iterator();
+            while (iteratQ.hasNext()) { //Verifica se o Quarto existe
+                Quarto tempQuarto = iteratQ.next();
+                if (tempQuarto.getNumero() == quarto) {
+                    quartoExis = true;
+                    break;
+                }
+            }
+
+            if (quartoExis) { //Se o Quarto existe prossegue com o cancelamento
+                in.nextLine();
+                do {
+                    System.out.print(" > Data Inicial da Reserva.: ");
+                    try {
+                        tempData = in.nextLine();
+                        data = LocalDate.parse(tempData, dataForm);
+                    } catch (Exception e) {
+                        System.out.println("Formato de Data inválida, verifique a inserção!\n");
+                        control= false;
+                    }
+                } while (!control);
+            
+                boolean achou= false;
+                iteratR = reservas.iterator(); //Itera para encontrar a Reserva que será cancelada
+                while (iteratR.hasNext()) {
+                    Reserva tempReserva= iteratR.next();
+                    if (tempReserva.getQuarto()==quarto && 
+                        tempReserva.getDataReserva().isEqual(data) && 
+                        tempReserva.getStatus()) { //Se a reserva possui o mesmo quarto, mesma data e esta ativa, ela é encerrada
+                        achou= true;
+                        tempReserva.setStatus(false);
+                        System.out.println("\n >> CANCELAMENTO REALIZADO\n"+tempReserva);
+                    }
+                }
+                if (!achou) {
+                    System.out.println("\n >> FALHA NO CANCELAMENTO, RESERVA NÃO LOCALIZADA!");
+                }
+                control= true;
+            } else {
+                System.out.println("Quarto inexistente, verifique o preenchimento!");
+                control= false;
+            }
+
+        } while (!control);
+
     }
 
-    public void procurarReserva(ArrayList<Reserva> reservas, Iterator<Reserva> iteratR) {
-        
+    public void procurarReserva() {
+        String cpf= null;
+        boolean control= true;
+
+        System.out.println("\n >> BUSCA DE RESERVAS POR CPF\n");
+        in.nextLine();
+        do { //Inserção e validação do CPF
+            System.out.print("   CPF........: "); cpf = in.nextLine();
+            cpf= cpf.replaceAll("[.\\-\\s]", ""); //Remove caracteres especiais
+            //Anotação: \\s: Representa qualquer espaço em branco. Incluindo: Espaços, Tabulação, Quebras de linha
+            //Anotação: \\-: O '-' precisa ser sucessor a barra invertida pois, somente o traço, é interpretado como um intervalo de caracteres.
+            
+            if (cpf.length() != 11 || !cpf.matches("\\d+")) { //Valida se tem 11 dígitos e a inserção de caractere não númericos
+                System.out.println("CPF Inválido, verifique a quantidade e os caracteres inseridos!\n");
+                control= false;
+            } else if (cpf.chars().distinct().count() == 1) { //Verifica se os digitos do CPF são iguais
+                System.out.println("CPF Inválido, verifique a inserção!\n");
+                control= false;
+            } else { //CPF Válido
+                control= true;
+            }
+
+        } while (!control);
+
+        System.out.println("\n > Resultado");
+        iteratR = reservas.iterator();
+            while (iteratR.hasNext()) { //Exibe as Reservas do CPF
+                Reserva tempReserva = iteratR.next();
+                if (tempReserva.getHospede().equals(cpf)) {
+                    System.out.println(tempReserva);
+                }
+            }
     }
 
-    public void calcularReceita(ArrayList<Reserva> reservas, Iterator<Reserva> iteratR) {
-        
-    }
+    public void calcularReceita() {
+        double valor1= 0, valor2= 0;
+        double total= 0;
 
-    public void listarReservas() {
-        System.out.println("\nLista de Reservas:");
+        System.out.println("\n >> RECEITA TOTAL DO HOTEL\n");
+        System.out.print(" > Reservas Ativas.....: R$");
         iteratR = reservas.iterator();
         while (iteratR.hasNext()) { 
             Reserva tempReserva = iteratR.next();
-            System.out.println(tempReserva);
+            if (tempReserva.getStatus()) {
+                valor1= valor1+tempReserva.getVlrTot();
+            } else {
+                valor2= valor2+tempReserva.getVlrTot();
+            }
+        }
+        System.out.print(valor1);
+        total= valor1+valor2;
+        System.out.print("\n > Reservas Encerradas.: R$");
+        System.out.println(valor2);
+        System.out.print("-----------------------------------\n > Total...............: R$");
+        System.out.println(total);
+    }
+
+    public void listarReservas() {
+        System.out.println("\n >> RESERVAS ATIVAS");
+        iteratR = reservas.iterator();
+        while (iteratR.hasNext()) { 
+            Reserva tempReserva = iteratR.next();
+            if (tempReserva.getStatus()) {
+                System.out.println(tempReserva);
+            }
         }
     }
 

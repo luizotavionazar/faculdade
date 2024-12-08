@@ -42,15 +42,15 @@ public class App {
                     break;
     
                 case 2:
-                    //chamarHotel.cancelarReserva(reservas, iteratR);
+                    chamarHotel.cancelarReserva();
                     break;
     
                 case 3:
-                    //chamarHotel.procurarReserva(reservas, iteratR);
+                    chamarHotel.procurarReserva();
                     break;
                 
                 case 4:
-                    //chamarHotel.calcularReceita(reservas, iteratR);
+                    chamarHotel.calcularReceita();
                     break;
                 
                 case 5:
