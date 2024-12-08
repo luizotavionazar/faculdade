@@ -38,13 +38,18 @@ public class Hotel {
         in.nextLine();
         do {
             System.out.print("Data Inicio (DD/MM/AAAA): ");
-            tempData = in.nextLine();
-            data = LocalDate.parse(tempData, dataForm);
-            if (data.isBefore(hoje)) { //Verifica se a data é menor que hoje
-                System.out.println("\nData inválida! Deve ser Igual ou Maior que hoje\n");
+            try {
+                tempData = in.nextLine();
+                data = LocalDate.parse(tempData, dataForm);
+                if (data.isBefore(hoje)) { //Verifica se a data é menor que hoje
+                    System.out.println("\nData inválida, deve ser maior ou igual à hoje!!\n");
+                    control= false;
+                } else {
+                    control=true;
+                }
+            } catch (Exception e) {
+                System.out.println("\nFormato de Data inválida, verifique a inserção!!\n");
                 control= false;
-            } else {
-                control=true;
             }
         } while (!control);
 
@@ -59,7 +64,7 @@ public class Hotel {
                 control = false;
             }
         } while (!control);
-        dataFim = data.plusDays(qtdDias);
+        dataFim = data.plusDays(qtdDias); //Define a Data de Fim da Reserva
     
         do {
             quartoExis = false; //Para reiniciar corretamente após selecionado um quarto reservado
@@ -88,7 +93,6 @@ public class Hotel {
             if (!quartoExis) { //Cria o quarto se ele não existir
                 Quarto novoQuarto = new Quarto(quarto);
                 quartos.add(novoQuarto);
-                System.out.println("teste");
             }
     
             if (!reservas.isEmpty()) { //Se for a primeira reserva
@@ -120,6 +124,9 @@ public class Hotel {
                                 control= false;
                                 break;
                             }
+                        } else { //QUANDO ENCONTRADA RESERVA PARA O QUARTO MAS FOI CANCELADA, PROSSEGUE
+                            control= true;
+                            break;
                         }
                     }
                 }
