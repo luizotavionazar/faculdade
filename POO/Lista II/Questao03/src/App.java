@@ -29,7 +29,7 @@ public class App {
                     opc= in.nextInt();
                     control1= true;
                 } catch (InputMismatchException e) {
-                    System.out.println("\nInforme um valor válido!\n");
+                    System.out.println("Informe um valor válido!\n");
                     in.next();
                     control1= false;
                 }
@@ -63,7 +63,7 @@ public class App {
                     break;
     
                 default:
-                    System.out.println("\nOpção inválida!");
+                    System.out.println("Opção inválida!");
                     break;
     
             }

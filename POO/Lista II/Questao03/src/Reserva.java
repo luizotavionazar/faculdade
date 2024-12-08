@@ -52,7 +52,7 @@ public class Reserva {
             statusForm= "ENCERRADA";
         }
         return "Reserva [Quarto= " + quarto + ", Hospede= " + hospede + ", Quantidade de Dias= " + numeroDias + 
-               ", Data da Reserva= "+ dataReserva.format(dataForm) + ", Data Fim= "+dataFim.format(dataForm)+", Status= "+statusForm;
+               ", Data da Reserva= "+ dataReserva.format(dataForm) + ", Data Fim= "+dataFim.format(dataForm)+", Status= "+statusForm+"]";
     }
 
 }
