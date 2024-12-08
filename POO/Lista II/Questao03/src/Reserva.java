@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Reserva {
     private int quarto;
@@ -7,6 +8,7 @@ public class Reserva {
     private LocalDate dataReserva;
     private LocalDate dataFim;
     private boolean status;
+    private DateTimeFormatter dataForm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Reserva (int quarto, String hospede, int numeroDias, LocalDate dataReserva, LocalDate dataFim, boolean status) {
         this.quarto= quarto;
@@ -43,7 +45,14 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva [Quarto=" + quarto + ", Hospede=" + hospede + ", Quantidade de Dias=" + numeroDias + ", Data da Reserva="+ dataReserva + ", Data Fim= "+dataFim+", Status= "+status+"]";
+        String statusForm= null;
+        if (status) {
+            statusForm= "ATIVA";
+        } else {
+            statusForm= "ENCERRADA";
+        }
+        return "Reserva [Quarto= " + quarto + ", Hospede= " + hospede + ", Quantidade de Dias= " + numeroDias + 
+               ", Data da Reserva= "+ dataReserva.format(dataForm) + ", Data Fim= "+dataFim.format(dataForm)+", Status= "+statusForm;
     }
 
 }
