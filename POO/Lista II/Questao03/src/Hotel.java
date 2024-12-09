@@ -124,7 +124,7 @@ public class Hotel {
                                 control= false;
                                 break;
                             }
-                        } else { //ERRO AQUI, PERMITE GRAVAR RESERVA EM QUARTO OCUPADO QUANDO ENCONTRADA RESERVA PARA O QUARTO MAS FOI CANCELADA, PROSSEGUE
+                        } else {
                             control= true;
                             break;
                         }
