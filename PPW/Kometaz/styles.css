@@ -1,0 +1,241 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 50px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    margin: 0;
+    background-size: cover;
+    /*background: linear-gradient(0deg, #372953, #302050, #331F5C);*/
+}
+
+/* CABEÇALHO */
+.menu {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente os itens */
+    padding: 0;
+    margin: 0px;
+    background: white;
+    list-style: none; /* Remove os marcadores das listas */
+    border-bottom: 20px solid #000041; /* Ajuste o tamanho e a cor da borda conforme necessário */
+}
+
+/* Logo */
+.menu img {
+    margin-left: 100px;
+    width: 250px;
+}
+
+/* Lista de navegação */
+.menu ul {
+    display: flex;
+    flex: 1; /* Faz o menu ocupar o espaço restante */
+    justify-content: space-around; /* Distribui os botões de forma uniforme */
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Remove os marcadores */
+}
+
+/* Botões do menu */
+.menu li a {
+    font-size: 30px; /* Aumenta o tamanho da fonte */
+    color: #000;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    transition: color 0.3s ease; /* Efeito suave na cor ao passar o mouse */
+}
+
+.menu li a:hover {
+    text-decoration: none;
+    transform: scale(1.1); /* Aumenta o texto */
+}
+
+.banner {
+    margin: 0; /* Remove margens externas */
+    display: flex; /* Usa flexbox para centralizar */
+    justify-content: center; /* Centraliza horizontalmente */
+    background-color: #331F5C; /* Cor de fundo (opcional) */
+    border-bottom: 20px solid #000041; /* Ajuste o tamanho e a cor da borda conforme necessário */
+}
+
+.banner img {
+    max-width: 100%; /* Garante que a largura máxima seja 100% do contêiner */
+}
+
+.topico {
+    margin: 0 auto; 
+    padding: 6px;        
+    background-color: #000041;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.categorias {
+    max-width: 1300px;
+    margin: 0 auto; 
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px; /* Espaçamento entre itens */
+}
+
+.categorias img {
+    width: 200px; /* Define a largura da imagem */
+    transition: transform 0.3s ease; /* Efeito suave de zoom */
+}
+
+.categorias div {
+    text-align: center; /* Centraliza texto e imagem */
+    margin: 0;
+}
+
+.categorias div p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.categorias div a {
+    text-decoration: none; /* Remove o sublinhado do link */
+    color: black; /* Cor do texto */
+    transition: color 0.3s ease; /* Efeito suave na cor ao passar o mouse */
+}
+
+.categorias div a:hover {
+    color: #331F5C; /* Muda a cor do texto ao passar o mouse */
+}
+
+.categorias div img:hover {
+    transform: scale(1.1); /* Aumenta a imagem */
+}
+
+.destaques {
+    max-width: 1000px;  
+    margin: 0 auto; 
+    margin-bottom: 20px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 5 colunas de largura igual */
+    gap: 20px; /* Espaço entre os produtos */
+    padding: 20px; /* Espaço interno em torno da grade */
+}
+
+.destaques div {
+    text-align: center;
+    border: 1px solid #ccc; /* Borda ao redor de cada produto */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação ao passar o mouse */
+}
+
+.destaques h4 {
+    color: #000041;
+    margin: 10px;
+}
+
+.destaques h5 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.destaques b { /* Valores R$ */
+    color: #000041;
+}
+
+.destaques div:hover b {
+    color: #4000c0;
+}
+
+.destaques div img {
+    width: 250px;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação ao passar o mouse */
+}
+
+.destaques div p {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+
+.destaques div:hover {
+    transform: scale(1.05); /* Aumenta levemente o tamanho */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+}
+
+.destaques div button {
+    display: block; /* Garante que o botão fique em uma nova linha */
+    width: 80%; /* Define a largura do botão como 80% do container */
+    margin: 10px auto 0; /* Centraliza o botão e adiciona espaço acima */
+    padding: 10px; /* Espaço interno do botão */
+    color: #fff; /* Cor do texto */
+    background-color: #000041; /* Cor de fundo (azul) */
+    border: none; /* Remove bordas padrão */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    
+}
+
+/* Efeito ao passar o mouse */
+.destaques div:hover button {
+    text-decoration: none;
+    background-color: #4000c0; /* Cor mais escura ao passar o mouse */
+}
+
+
+footer {
+    clear: both; /* Limpa a flutuação */
+    background-color: #000041;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0px;
+}
+
+footer img {
+    width: 300px;
+    padding: 10px;
+}
+
+.sobre {
+    max-width: 1000px;     
+    margin: 0 auto; 
+    padding: 0px;        
+    background-color: #FFFFFF;
+}
+
+.produto {
+    width: 100%; /* ou ajuste conforme necessário */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.imagem {
+    width: 50%; /* Defina a largura conforme necessário */
+    float: left; /* Faz com que a imagem flutue à esquerda */
+}
+
+.pedido {
+    width: 50%; /* Defina a largura conforme necessário */
+    float: left; /* Faz com que o pedido fique ao lado da imagem */
+}
+
+/* Limpeza do float para evitar que afete outros elementos */
+.produto::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.fix {
+    clear: both; /* Limpa a flutuação */
+}
