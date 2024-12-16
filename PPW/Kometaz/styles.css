@@ -188,8 +188,93 @@ body {
     background-color: #4000c0; /* Cor mais escura ao passar o mouse */
 }
 
+.produto {
+    position: relative; /* Contêiner base para todo o produto */
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 25px;
+    border: 1px solid #ccc; /* Borda ao redor de cada produto */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 0px 5px 1px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+}
 
-footer {
+.informacoes {
+    position: relative; /* Para evitar que .imagem e .pedido fiquem fora do fluxo */
+    display: flex; /* Organiza os elementos lado a lado */
+    align-items: top;
+    gap: 100px; /* Espaçamento entre os elementos */
+}
+
+.imagem {
+    flex: 1; /* Faz com que a imagem ocupe 50% do espaço */
+    text-align: center;
+}
+
+.imagem img {
+    width: 100%; /* Garante que a imagem respeite o espaço */
+    max-width: 500px; /* Define um tamanho máximo */
+    margin-bottom: 30px;
+}
+
+.pedido {
+    margin-top: 20px;
+    flex: 1; /* Faz com que o pedido ocupe o outro 50% */
+}
+
+.pedido img {
+    width: 150px;
+}
+
+.produto button {
+    display: block; /* Garante que o botão fique em uma nova linha */
+    width: 90%; /* Define a largura do botão como 80% do container */
+    margin: 10px auto 0; /* Centraliza o botão e adiciona espaço acima */
+    margin-top: 30px;
+    padding: 10px; /* Espaço interno do botão */
+    color: #fff; /* Cor do texto */
+    background-color: #000041; /* Cor de fundo (azul) */
+    border: none; /* Remove bordas padrão */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    font-size: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação ao passar o mouse */
+}
+
+.produto button h5 {
+    margin: 0;
+}
+
+.pedido h4 {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.pedido p.desc {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Efeito ao passar o mouse */
+.produto button:hover {
+    text-decoration: none;
+    background-color: #4000c0; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.1); /* Aumenta a imagem */
+}
+
+/* Limpeza do float para evitar que afete outros elementos */
+.produto::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.rodape footer {
     clear: both; /* Limpa a flutuação */
     background-color: #000041;
     color: white;
@@ -197,11 +282,11 @@ footer {
     text-align: center;
 }
 
-footer p {
+.rodape p {
     margin: 0px;
 }
 
-footer img {
+.rodape img {
     width: 300px;
     padding: 10px;
 }
@@ -211,29 +296,6 @@ footer img {
     margin: 0 auto; 
     padding: 0px;        
     background-color: #FFFFFF;
-}
-
-.produto {
-    width: 100%; /* ou ajuste conforme necessário */
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.imagem {
-    width: 50%; /* Defina a largura conforme necessário */
-    float: left; /* Faz com que a imagem flutue à esquerda */
-}
-
-.pedido {
-    width: 50%; /* Defina a largura conforme necessário */
-    float: left; /* Faz com que o pedido fique ao lado da imagem */
-}
-
-/* Limpeza do float para evitar que afete outros elementos */
-.produto::after {
-    content: "";
-    display: block;
-    clear: both;
 }
 
 .fix {
