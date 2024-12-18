@@ -112,7 +112,7 @@ body {
 }
 
 .categorias div img:hover {
-    transform: scale(1.1); /* Aumenta a imagem */
+    transform: scale(1.1); /* Aumenttoa a imagem */
 }
 
 .destaques {
@@ -121,7 +121,7 @@ body {
     margin-bottom: 20px;
     margin-top: 10px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 5 colunas de largura igual */
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas de largura igual */
     gap: 20px; /* Espaço entre os produtos */
     padding: 20px; /* Espaço interno em torno da grade */
 }
