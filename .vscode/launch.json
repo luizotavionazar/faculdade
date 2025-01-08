@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/luizotavio/Documentos/IFTM/faculdade/Robotica/sketch_nov21a/TecladoMatricial",
-      "program": "/home/luizotavio/Documentos/IFTM/faculdade/Robotica/sketch_nov21a/TecladoMatricial/build/Debug/outDebug",
+      "cwd": "/home/luizotavio/Documentos/IFTM/faculdade/Robotica/TecladoMatricial",
+      "program": "/home/luizotavio/Documentos/IFTM/faculdade/Robotica/TecladoMatricial/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
