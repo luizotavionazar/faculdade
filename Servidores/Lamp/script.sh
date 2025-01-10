@@ -88,9 +88,11 @@ fi
 switch_menu_principal(){
 case $opc in
 	1)
+	apt update -y
+	echo
 	echo "Instalando aplicações do LAMP..."
 	echo
-	sudo apt-get install apache2 mariadb-server php php-mysql libapache2-mod-php
+	sudo apt-get install apache2 mariadb-server php php-mysql libapache2-mod-php -y
 	echo
 	echo LAMP instalado!!
 	echo
