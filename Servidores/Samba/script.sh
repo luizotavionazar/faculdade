@@ -59,25 +59,25 @@ switch_menu_gerenciar_samba(){
 case $opc in
 	1)
 	echo
-	systemctl restart smbd
+	/etc/init.d/smbd restart
 	echo
 	read -p "Tecle Enter..." -n 1
 	menu_gerenciar_samba;;
 	2)
 	echo
-	systemctl status smbd
+	/etc/init.d/smbd status
 	echo
 	read -p "Tecle Enter..." -n 1
 	menu_gerenciar_samba;;
 	3)
 	echo
-	systemctl start smbd
+	/etc/init.d/smbd start
 	echo
 	read -p "Tecle Enter..." -n 1
 	menu_gerenciar_samba;;
 	4)
 	echo
-	systemctl stop smbd
+	/etc/init.d/smbd stop
 	echo
 	read -p "Tecle Enter..." -n 1
 	menu_gerenciar_samba;;
@@ -89,13 +89,13 @@ esac
 instalar_configurar_samba(){
 	echo
 	echo "Atualizando os repositórios..."
-	apt update -y
+	sudo apt update -y
 	echo
 	echo "Instalando o Samba..."
-	apt install samba -y
+	sudo apt-get install samba -y
 	echo
 	echo "Configurando o Samba..."
-	CONF_FILE="/etc/samba/smb.conf"
+config_samba="/etc/samba/smb.conf"
 cat <<EOL > $CONF_FILE
 [global]
    workgroup = WORKGROUP
@@ -115,15 +115,12 @@ cat <<EOL > $CONF_FILE
 EOL
 	mkdir -p /samba/publico
 	chmod 777 /samba/publico
-	systemctl restart smbd
-	systemctl enable smbd
 	echo "Instalação e configuração do Samba concluídas!!"
 	echo "- Criou o compartilhamento público sem senha;"
 	echo "- Criou o diretório com permissão de leitura e escrita."
 	echo
-	echo "Diretório compartilhado: /samba/publico"
-	echo
 	read -p "Tecle Enter..." -n 1
+	/etc/init.d/smbd restart
 }
 
 menu_principal

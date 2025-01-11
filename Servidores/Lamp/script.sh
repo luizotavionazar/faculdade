@@ -88,7 +88,7 @@ fi
 switch_menu_principal(){
 case $opc in
 	1)
-	apt update -y
+	sudo apt update -y
 	echo
 	echo "Instalando aplicações do LAMP..."
 	echo

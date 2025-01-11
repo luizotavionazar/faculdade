@@ -58,22 +58,22 @@ esac
 switch_menu_gerenciar_ftp(){
 case $opc in
 	1)
-	systemctl restart proftpd
+	/etc/init.d/proftpd restart
 	echo
 	read -p "Tecle Enter..." -n 1
 	menu_gerenciar_ftp;;
 	2)
-	systemctl status proftpd
+	/etc/init.d/proftpd status
 	echo
 	read -p "Tecle Enter..." -n 1
 	menu_gerenciar_ftp;;
 	3)
-	systemctl start proftpd
+	/etc/init.d/proftpd start
 	echo
 	read -p "Tecle Enter..." -n 1
 	menu_gerenciar_ftp;;
 	4)
-	systemctl stop proftpd
+	/etc/init.d/proftpd stop
 	echo
 	read -p "Tecle Enter..." -n 1
 	menu_gerenciar_ftp;;
@@ -96,7 +96,7 @@ instalar_configurar_ftp(){
 	echo "FileZilla Instalado!!"
 	echo
 	echo "Configurando o ProFTPD..."
-	arquivo_conf="/etc/proftpd/proftpd.conf"
+config_proftpd="/etc/proftpd/proftpd.conf"
 cat <<EOL > $arquivo_conf
 	ServerName                      "Servidor FTP"
 	ServerType                      standalone
@@ -125,8 +125,7 @@ EOL
 	echo "- Criou usuário e grupo com limite de 10 conexões;"
 	echo "- Restrigiu o acesso do usuário no seu diretório;"
 	echo "- Definiu a porta 21 como padrão, liberou as permissões e limitou em 30 conexões."
-	echo
-	systemctl restart proftpd
+	/etc/init.d/proftpd restart
 	echo
 	read -p "Tecle Enter..." -n 1
 }
