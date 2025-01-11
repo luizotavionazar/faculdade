@@ -95,7 +95,7 @@ instalar_configurar_samba(){
 	sudo apt-get install samba -y
 	echo
 	echo "Configurando o Samba..."
-CONF_FILE="/etc/samba/smb.conf"
+sudo CONF_FILE="/etc/samba/smb.conf"
 cat <<EOL > $CONF_FILE
 [global]
    workgroup = WORKGROUP
