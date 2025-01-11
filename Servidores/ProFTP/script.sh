@@ -96,7 +96,7 @@ instalar_configurar_ftp(){
 	echo "FileZilla Instalado!!"
 	echo
 	echo "Configurando o ProFTPD..."
-config_proftpd="/etc/proftpd/proftpd.conf"
+arquivo_conf="/etc/proftpd/proftpd.conf"
 cat <<EOL > $arquivo_conf
 	ServerName                      "Servidor FTP"
 	ServerType                      standalone
