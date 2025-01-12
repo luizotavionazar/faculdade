@@ -7,7 +7,7 @@ public class Normal extends Ingresso{
 
     @Override
     public void imprimeValor() {
-        System.out.println("Ingresso Normal");
+        System.out.println("Valor do ingresso Normal: R$"+valor);
     }
 
 }

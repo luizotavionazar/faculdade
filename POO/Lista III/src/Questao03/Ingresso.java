@@ -15,7 +15,7 @@ public class Ingresso {
     }
 
     public void imprimeValor() {
-        System.out.println("Valor do ingresso: R$"+valor);
+        System.out.println("Valor do Ingresso: R$"+valor);
     }
 
 }

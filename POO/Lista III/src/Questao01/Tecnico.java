@@ -20,4 +20,11 @@ public class Tecnico extends Assistente {
     public void ganhoAnual() {
         
     }
+
+    @Override
+    public String toString() {
+        String nome = String.format("Assistente Tecnico: [Nome= %s, Salario= R$%f, Matricula= %d, Bonus= R$%f]", this.nome, this.salario, this.matricula, this.bonusSal);
+        return nome;
+    }
+
 }

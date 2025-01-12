@@ -30,4 +30,12 @@ public class Administrativo extends Assistente {
     public void ganhoAnual() {
         
     }
+
+    @Override
+    public String toString() {
+        String nome = String.format("Assistente Administrativo: [Nome= %s, Salario= R$%f, Matricula= %d, Turno= %s, Adicional= R$%f]", this.nome, this.salario, this.matricula, this.turno, this.adicional);
+        return nome;
+    }
+
+
 }
