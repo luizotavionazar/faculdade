@@ -33,6 +33,7 @@ public class Teste {
     System.out.println(stray.caminha());
 
     System.out.println("\nC)");
+    
 
     System.out.println("\nD)");
     boolean control= true;
@@ -101,7 +102,38 @@ public class Teste {
     }
 
     System.out.println("\nE)");
+    System.out.println("Imovel #602");
+    do {
+        System.out.print("Qual Imovel deseja? (1-Novo 2-Velho): ");
+        opc= in.nextInt();
+        switch (opc) {
+            case 1:
+                tmp1= 1;
+                System.out.print("Imovel: Novo\n");
+                control= true;
+                break;
+
+            case 2:
+                tmp1= 2;
+                System.out.print("Imovel: Velho\n");
+                control= true;
+                break;
+        
+            default:
+                System.out.println("Opção inválida!!");
+                control= false;
+                break;
+        }
+    } while (!control);
     
+    if (tmp1==1) { //Cria o Imovel
+        Novo imovel= new Novo("Rua da Conceição, 213, Centro, Paracatu-MG", 900, 250);
+        System.out.println("Valor Total: R$"+(imovel.getPreco()+imovel.getValorAdicional()));
+    } else {
+        Velho imovel= new Velho("Rua da Benção, 512, Chapadinha, Paracatu-MG", 800, 30);
+        System.out.println("Valor Total: R$"+(imovel.getPreco()+imovel.getDesconto()));
+    }
+
     in.close();
     }
 
