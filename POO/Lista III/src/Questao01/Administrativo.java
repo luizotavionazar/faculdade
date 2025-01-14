@@ -27,15 +27,20 @@ public class Administrativo extends Assistente {
     }
 
     @Override
-    public void ganhoAnual() {
-        
+    public double ganhoAnual() {
+        return ((this.salario*12)+(this.adicional*12));
     }
 
     @Override
     public String toString() {
-        String nome = String.format("Assistente Administrativo: [Nome= %s, Salario= R$%f, Matricula= %d, Turno= %s, Adicional= R$%f]", this.nome, this.salario, this.matricula, this.turno, this.adicional);
+        String nome= String.format("Assistente Administrativo: [Nome= %s, Salario= R$%f, Matricula= %d, Turno= %s, Adicional= R$%f]", this.nome, this.salario, this.matricula, this.turno, this.adicional);
         return nome;
     }
 
+    @Override //Bonus, de gratis
+    public String exibeDados() {
+        String dados= String.format("Me chamo %s, minha matricula é %d e recebo R$%f de salário!!\nEu trabalho no turno %s, por isso ganho um adicional de R$%f, totalizando R$%f por ano!!", this.nome, this.matricula,this.salario, this.turno, this.adicional, this.ganhoAnual());
+        return dados;
+    }
 
 }

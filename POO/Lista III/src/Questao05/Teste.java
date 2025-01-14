@@ -11,7 +11,10 @@ public class Teste {
     public static void main(String[] args) throws Exception {
     Scanner in = new Scanner(System.in);
 
-    System.out.println("\nA)");
+    System.out.println("******************************************************************************************************************************************************************************************");
+    System.out.println("                                                                    Lista III - Herança | Luiz Otávio Nazar");
+    System.out.println("******************************************************************************************************************************************************************************************");
+    System.out.println("\nA) Criar um assistente administrativo e um técnico. Imprimir o número da matricula e nome de cada um:");
     Administrativo jeremy = new Administrativo("Jeremy Antonio", 2410, 101, "noturno", 340);
     System.out.println(jeremy.toString());
     Tecnico cleide = new Tecnico("Cleide Gomes", 3422.50, 501, 250);
@@ -20,7 +23,7 @@ public class Teste {
     System.out.println("\nNº Matricula: "+jeremy.getMatricula()+", Nome: "+jeremy.getNome());
     System.out.println("Nº Matricula: "+cleide.getMatricula()+", Nome: "+cleide.getNome());
     
-    System.out.println("\nB)");
+    System.out.println("\nB) Criar um animal do tipo cachorro e faze-lo latir. Criar um gato e faze-lo miar. Faze-los caminharem:");
     Cachorro iggy = new Cachorro();
     System.out.println(iggy.toString());
     Gato stray = new Gato();
@@ -32,10 +35,19 @@ public class Teste {
     System.out.println("\n"+iggy.caminha());
     System.out.println(stray.caminha());
 
-    System.out.println("\nC)");
-    
+    System.out.println("\nC) Testar as clases Rica, Pobre e Miseravel como quiser. Cria e executa a ação de cada classe e define um Miseravel:");
+    Pobre sereshumanos= new Pobre();
+    sereshumanos.trabalha();
+    Rica safados= new Rica();
+    safados.fazCompras();
+    Miseravel eu= new Miseravel();
+    eu.mendiga();
+    eu.setNome("Luiz");
+    eu.setIdade(22);
+    System.out.println("O "+eu.getNome()+" é um miserável de "+eu.getIdade()+" anos!!\n");
+    System.out.println("Objetos "+sereshumanos.toString()+", "+safados.toString()+" e "+eu.toString()+" testados com Sucesso!!");
 
-    System.out.println("\nD)");
+    System.out.println("\nD) Criar um Ingresso sendo 1 para Normal e 2 para VIP, e se VIP, 1 para camarote superior e 2 para inferior. Informar cada escolha do usuário. Imprimir o valor do ingresso:");
     boolean control= true;
     int opc=0, tmp1=0, tmp2=0;
 
@@ -101,7 +113,7 @@ public class Teste {
         }
     }
 
-    System.out.println("\nE)");
+    System.out.println("\nE) Criar um Imovel, sendo 1 para Novo e 2 para Velho. Exibir aa escolha do usuário e imprimir o valor final do Imovel:");
     System.out.println("Imovel #602");
     do {
         System.out.print("Qual Imovel deseja? (1-Novo 2-Velho): ");
@@ -133,6 +145,19 @@ public class Teste {
         Velho imovel= new Velho("Rua da Benção, 512, Chapadinha, Paracatu-MG", 800, 30);
         System.out.println("Valor Total: R$"+(imovel.getPreco()+imovel.getDesconto()));
     }
+    System.out.println("\n******************************************************************************************************************************************************************************************");
+    System.out.println("                                                                    Não há mais nada a ser fazido... Obrigado!!");
+    System.out.println("******************************************************************************************************************************************************************************************\n");
+
+    System.out.println("    >>>> BÔNUS\n");
+    System.out.println(jeremy.exibeDados()+"\n");
+    System.out.println(cleide.exibeDados()+"\n");
+    Assistente kleide= new Assistente("Kleide Pinto", 3250, 301);
+    System.out.println(kleide.exibeDados()+"\n");
+    Funcionario wilson= new Funcionario("Wilson Antenor", 1650);
+    wilson.info();
+    wilson.darAumento(3520);
+    System.out.println("\n");
 
     in.close();
     }

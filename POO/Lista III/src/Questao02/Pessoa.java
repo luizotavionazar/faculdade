@@ -5,7 +5,7 @@ public class Pessoa {
     private int idade;
 
     public Pessoa() {
-        System.out.println("Pessoa existe!!");
+        
     }
 
     public String getNome() {

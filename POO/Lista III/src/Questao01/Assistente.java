@@ -17,8 +17,9 @@ public class Assistente extends Funcionario {
     }
 
     @Override
-    public void exibeDados() {
-        
+    public String exibeDados() {
+        String dados= String.format("Me chamo %s, minha matricula é %d e recebo R$%f de salário, totalizando R$%f por ano!!", this.nome, this.matricula, this.salario, this.ganhoAnual());
+        return dados;
     }
 
 }
