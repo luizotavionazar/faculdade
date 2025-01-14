@@ -6,6 +6,13 @@
       "name": "Teste",
       "request": "launch",
       "mainClass": "Questao05.Teste",
+      "projectName": "faculdade_c10c61a0"
+    },
+    {
+      "type": "java",
+      "name": "Teste",
+      "request": "launch",
+      "mainClass": "Questao05.Teste",
       "projectName": "faculdade_ec7724f2"
     },
     {

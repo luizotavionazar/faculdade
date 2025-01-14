@@ -28,7 +28,7 @@ public class Animal {
     }
 
     public String caminha() {
-        return "Animal caminha";
+        return "Animal caminha...";
     }
 
 }

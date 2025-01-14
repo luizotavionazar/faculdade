@@ -36,7 +36,7 @@ public class Funcionario {
     }
 
     protected String exibeDados() {
-        String dados= String.format("Se chama %s e recebe R$%f de salário, totalizando R$%f por ano!!", this.nome, this.salario, this.ganhoAnual());
+        String dados= String.format("Se chama %s e recebe R$%.2f de salário, totalizando R$%.2f por ano!!", this.nome, this.salario, this.ganhoAnual());
         return dados;
     }
 
