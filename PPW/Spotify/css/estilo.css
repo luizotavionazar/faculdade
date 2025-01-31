@@ -1,0 +1,257 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #222222;
+    height: 100vh;
+    margin: 0;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header {
+    flex-grow: 0;
+    flex-shrink: 1;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    height: 60px;
+}
+main {
+    flex-grow: 1;
+    display: flex;
+    height: calc(100vh - 160px);
+}
+footer {
+    flex-grow: 0;
+    flex-shrink: 1; 
+    flex-basis: 100px;
+}
+.header-navegacao {
+    display: flex;
+    justify-content: space-between;
+}
+.navegacao-botoes {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 0 5px;
+}
+.centro-busca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.busca {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 8px;
+    border-radius: 1000px;
+    border: 1px solid transparent;
+}
+.busca input[type="search"] {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+.busca:focus-within {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu-lateral {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 5px;
+    /* height: 100%; - Não precisa de altura pois o padrão do align-items é stretch*/
+    overflow-y: auto;
+    flex-basis: 60px;
+    scrollbar-width: none;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.menu-lateral ul li a {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    text-align: center;
+    display: block;
+    border-radius: 5%;
+}
+.menu-lateral ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+footer {
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    height: 80px;
+}
+
+.musica-atual {
+    padding-left: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.musica-atual i {
+    font-size: 25px;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 10px;
+}
+.reproducao {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+.reproducao .controles {
+    display: flex;
+    gap: 20px;
+    font-size: 20px; /* Ajuste para que os ícones pequenos fiquem mais alinhados */
+    align-items: center;
+}
+.reproducao .fa-circle-play {
+    font-size: 40px; /* Ícone de play maior */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reproducao .barra-progresso {
+    background-color: rgba(255, 255, 255, 0.15);
+    height: 5px;
+    width: 100%;
+    max-width: 500px;
+    min-width: 200px;
+    position: relative;
+}
+
+.tempo {
+    display: flex;
+    align-items: center;
+    width: 600px; /* Garante que a barra ocupe toda a largura do container */
+    justify-content: space-between;
+    position: relative; /* Para que os elementos dentro possam usar position: absolute */
+}
+
+.volume {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-right: 15px;
+}
+.volume .barra-progresso {
+    min-width: 50px;
+    max-width: 100px;
+    background-color: rgba(255, 255, 255, 0.15);
+    height: 5px;
+}
+
+
+
+#playlists {
+    background-color: transparent;
+    font-size: 30px;
+}
+
+#playlists i:hover {
+    transform: scale(1.1); /* Efeito de "zoom" */
+    transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1); /* Suavização */
+}
+
+#curtidas {
+    background: linear-gradient(180deg, rgb(99, 99, 227), rgb(192, 201, 221));
+}
+
+#salvas{
+    background: rgb(5, 129, 84);
+}
+.fa-bookmark{
+    color: rgb(46, 222, 99);
+    font-size: 20px;
+}
+
+.menu-lateral ul li a img {
+    width: 100%; /* Ajuste para o tamanho desejado */
+    height: 100%;
+    border-radius: 5%; /* Deixe as bordas arredondadas */
+    object-fit: cover; /* Garante que a imagem se encaixe no espaço */
+    transition: opacity 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.menu-lateral ul li a img:hover {
+    opacity: 0.5; /* Reduz a opacidade para 50% */
+}
+
+.musica-atual img {
+    width: 70px; /* Ajuste para o tamanho desejado */
+    height: 70px;
+    border-radius: 5%; /* Deixe as bordas arredondadas */
+    object-fit: cover; /* Garante que a imagem se encaixe no espaço */
+}
+
+.musica-atual img:hover {
+    transform: scale(1.1); /* Efeito de "zoom" */
+    transition: transform 0.2s ease-in-out;
+    transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* Suavização */
+}
+
+.fa-circle-play {
+    font-size: 30px;
+}
+
+.playlist {
+    display: flex;
+    flex-direction: column; /* Divide em duas partes, uma em cima da outra */
+    background: linear-gradient(rgb(0, 172, 0), black 50%);
+    overflow-y: auto;
+    flex: 1;
+    height: 100%;
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center; /* Alinha os itens no centro verticalmente */
+    justify-content: space-between; /* Espaça a imagem e as informações */
+    padding: 20px;
+    height: 150px; /* Ajuste o tamanho do cabeçalho conforme necessário */
+}
+
+.cabecalho img {
+    width: 120px; /* Ajuste o tamanho da imagem */
+    height: 120px;
+    border-radius: 5%; /* Borda arredondada */
+    object-fit: cover; /* Garante que a imagem se ajuste corretamente */
+    margin-right: 20px; /* Espaçamento entre a imagem e as informações */
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Alinha as informações no centro */
+    color: white;
+}
+
+.musicas {
+    flex-grow: 1;
+    overflow-y: auto;
+}
