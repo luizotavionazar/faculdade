@@ -23,13 +23,13 @@ public class Tecnico extends Assistente {
 
     @Override
     public String toString() {
-        String nome= String.format("Assistente Tecnico: [Nome= %s, Salario= R$%f, Matricula= %d, Bonus= R$%f]", this.nome, this.salario, this.matricula, this.bonusSal);
+        String nome= String.format("Assistente Tecnico: [Nome= %s, Salario= R$%.2f, Matricula= %d, Bonus= R$%.2f]", this.nome, this.salario, this.matricula, this.bonusSal);
         return nome;
     }
 
     @Override //Bonus, de gratis
     public String exibeDados() {
-        String dados= String.format("Me chamo %s, minha matricula é %d e recebo R$%f de salário!!\nEu tenho um bonus de R$%f, totalizando R$%f por ano!!", this.nome, this.matricula, this.salario, this.bonusSal, this.ganhoAnual());
+        String dados= String.format("Me chamo %s, minha matricula é %d e recebo R$%.2f de salário!!\nEu tenho um bonus de R$%.2f, totalizando R$%.2f por ano!!", this.nome, this.matricula, this.salario, this.bonusSal, this.ganhoAnual());
         return dados;
     }
 

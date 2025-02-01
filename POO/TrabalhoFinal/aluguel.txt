@@ -1,0 +1,51 @@
+Tabelas principais:
+Clientes (Clientes)
+Armazena os dados dos clientes que vão alugar os equipamentos.
+
+id_cliente (PK)
+nome
+email
+telefone
+endereco
+Equipamentos (Equipamentos)
+Contém os equipamentos disponíveis para aluguel.
+
+id_equipamento (PK)
+nome
+descricao
+preco_diaria
+quantidade_disponivel (para controlar a quantidade de cada item)
+status (ex: disponível, em manutenção, alugado, etc.)
+Contratos (Contratos)
+Registra as informações sobre cada aluguel, como o cliente, o equipamento alugado e o período de locação.
+
+id_contrato (PK)
+id_cliente (FK)
+id_equipamento (FK)
+data_inicio
+data_fim
+valor_total
+status_contrato (ex: ativo, finalizado, cancelado)
+Transações (Transacoes)
+Guarda o registro de pagamentos ou alterações de valores, como o valor pago ou qualquer penalidade.
+
+id_transacao (PK)
+id_contrato (FK)
+data_transacao
+valor_pago
+tipo_pagamento (ex: cartão, transferência bancária)
+Categorias (Categorias)
+Caso você queira organizar os equipamentos por categorias (ex: ferramentas, computadores, etc.).
+
+id_categoria (PK)
+nome_categoria
+Equipamento_Categoria (Equipamento_Categoria)
+Relação entre equipamentos e categorias, caso um equipamento tenha mais de uma categoria.
+
+id_equipamento (FK)
+id_categoria (FK)
+Relacionamentos:
+Clientes x Contratos: Um cliente pode ter vários contratos, mas cada contrato pertence a um único cliente.
+Equipamentos x Contratos: Um contrato envolve um equipamento, mas cada equipamento pode estar em vários contratos (dependendo de como for o sistema).
+Contratos x Transações: Cada contrato pode ter uma ou mais transações de pagamento associadas.
+Equipamentos x Categorias: Um equipamento pode pertencer a uma ou mais categorias, caso você queira organizar seu catálogo dessa forma.

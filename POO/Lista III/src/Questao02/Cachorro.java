@@ -6,8 +6,4 @@ public class Cachorro extends Animal{
         return "AU AU AU";
     }
 
-    public String caminha() {
-        return "Cachorro caminhando...";
-    }
-
 }

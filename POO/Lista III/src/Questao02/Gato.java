@@ -6,7 +6,4 @@ public class Gato extends Animal{
         return "MIAU MIAU";
     }
 
-    public String caminha() {
-        return "Gato caminhando...";
-    }
 }

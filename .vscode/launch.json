@@ -3,6 +3,34 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "Main",
+      "projectName": "faculdade_c10c61a0"
+    },
+    {
+      "type": "java",
+      "name": "Teste",
+      "request": "launch",
+      "mainClass": "Teste",
+      "projectName": "faculdade_c10c61a0"
+    },
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "mainClass": "App",
+      "projectName": "faculdade_c10c61a0"
+    },
+    {
+      "type": "java",
+      "name": "Teste",
+      "request": "launch",
+      "mainClass": "Questao05.Teste",
+      "projectName": "faculdade_c10c61a0"
+    },
+    {
+      "type": "java",
       "name": "Teste",
       "request": "launch",
       "mainClass": "Questao05.Teste",
