@@ -1,5 +1,6 @@
 import Parte1.*;
 import Parte2.*;
+import Parte3.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -38,6 +39,14 @@ public class Main {
         System.out.println("Salário: R$" + jhonnie.calcularSalario() + "\n");
 
         //PARTE 3
-        
+        Eletronico celular = new Eletronico("Galaxy gran prime", 700);
+        Alimento pao = new Alimento("Pao de sal", 0.50);
+
+        celular.exibirDetalhes();
+        celular.processarPagamento();
+        System.out.println();
+        pao.exibirDetalhes();
+        pao.processarPagamento();
+        System.out.println();
     }
 }
