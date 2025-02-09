@@ -76,6 +76,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggleBtn = document.getElementById('menuToggleBtn');
     const menuContainer = document.querySelector('.menu-container');
     const iconeMenu = document.querySelector('.icone-menu'); // Seleciona o ícone
+    const menuButtons = document.querySelectorAll('.menu-button');
+
+    function animateMenuItems() {
+        menuButtons.forEach((button, index) => {
+            button.style.opacity = '0';
+        button.style.transform = 'translateX(-20px)';
+        setTimeout(() => {
+            button.style.opacity = '1';
+            button.style.transform = 'translateX(0)';
+            }, index * 1000);
+        });
+    }
 
     menuToggleBtn.addEventListener('click', function() {
         iconeMenu.classList.remove('expandir'); // Garante que a animação sempre funcione
@@ -89,6 +101,9 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 iconeMenu.classList.remove('fa-caret-up');
                 iconeMenu.classList.add('fa-caret-down');
+                if (window.innerWidth < 768) {
+                    animateMenuItems();
+                }
             }
 
             iconeMenu.classList.add('expandir'); // Inicia a animação de expandir

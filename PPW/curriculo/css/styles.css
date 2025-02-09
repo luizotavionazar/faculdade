@@ -39,6 +39,9 @@ html {
     box-sizing: inherit;
 }
 
+aside {
+    position: relative;
+}
   /* Cabeçalho */
 header {
     background-color: var(--header-bg);
@@ -91,8 +94,14 @@ header h1 {
   }
   
   #menuToggleBtn {
-    font-size: 40px;
+    font-size: 30px;
+    display: inline-block;
     color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
   }
   
   /* Container principal */
@@ -107,11 +116,19 @@ header h1 {
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     display: none;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
   }
   
   .menu-container.show {
     display: block;
+    max-height: 1000px; /* Ajuste conforme necessário */
   }
+
+  .menu-container.show .menu-button {
+    opacity: 1;
+    transform: translateX(0);
+}
   
   /* Botões do Menu */
   .menu-button {
@@ -124,8 +141,10 @@ header h1 {
     color: white;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s ease;
     text-align: left;
+    opacity: 0;
+    transition: all 0.3s ease-out;
+    transform: translateX(-20px);
   }
   
   .menu-button:hover {
@@ -151,7 +170,6 @@ header h1 {
     display: none;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s, transform 0.5s;
   }
   
   .content-section.active {
@@ -262,7 +280,7 @@ header h1 {
     }
 
     .menu-button.animar {
-        animation: slideIn 0.5s ease-out forwards; /* Ajuste a duração e o tipo de animação conforme necessário */
+        animation: slideIn 1s ease-out forwards; /* Ajuste a duração e o tipo de animação conforme necessário */
     }
     
     @keyframes slideIn {
