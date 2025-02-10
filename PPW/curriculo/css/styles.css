@@ -117,13 +117,19 @@ header h1 {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     display: none;
     overflow: hidden;
-    transition: max-height 0.5s ease-out;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
   }
   
   .menu-container.show {
     display: block;
     max-height: 1000px; /* Ajuste conforme necessário */
   }
+
+  /* Animação de fechamento do menu */
+.menu-container.hide {
+  max-height: 0;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
 
   .menu-container.show .menu-button {
     opacity: 1;

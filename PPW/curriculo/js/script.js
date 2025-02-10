@@ -30,7 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Em dispositivos móveis, ocultar menu após clicar
             if (window.innerWidth < 768 && sectionId !== 'portfolio') {
-                document.querySelector('.menu-container').classList.remove('show'); }
+                const menuContainer = document.querySelector('.menu-container');
+                menuContainer.classList.add('hide');
+                
+                setTimeout(() => {
+                    menuContainer.classList.remove('show', 'hide');
+                }, 300); // Tempo igual à duração da transição
+            }
             });
     });
 });
@@ -85,44 +91,46 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             button.style.opacity = '1';
             button.style.transform = 'translateX(0)';
-            }, index * 1000);
+            }, index * 100);
         });
     }
 
-    menuToggleBtn.addEventListener('click', function() {
-        iconeMenu.classList.remove('expandir'); // Garante que a animação sempre funcione
-        iconeMenu.classList.add('encolher'); // Inicia a animação de encolher
+    // Impede que o menu feche ao clicar dentro dele
+    menuContainer.addEventListener('click', function(event) {
+    event.stopPropagation();
+    });
+
+    menuToggleBtn.addEventListener('click', function(event) {
+        event.stopPropagation(); // Impede a propagação do evento
+        
+        iconeMenu.classList.remove('expandir');
+        iconeMenu.classList.add('encolher');
+        
         setTimeout(() => {
-            iconeMenu.classList.remove('encolher'); // Remove a classe de encolher
-
-            if (menuContainer.classList.contains('show')) {
-                iconeMenu.classList.remove('fa-caret-down');
-                iconeMenu.classList.add('fa-caret-up');
+            iconeMenu.classList.remove('encolher');
+            
+            // Verifica o estado atual do menu
+            const isOpening = !menuContainer.classList.contains('show');
+            
+            if (isOpening) {
+                // Animação de abertura
+                menuContainer.classList.remove('hide');
+                menuContainer.classList.add('show');
+                animateMenuItems();
             } else {
-                iconeMenu.classList.remove('fa-caret-up');
-                iconeMenu.classList.add('fa-caret-down');
-                if (window.innerWidth < 768) {
-                    animateMenuItems();
-                }
-            }
-
-            iconeMenu.classList.add('expandir'); // Inicia a animação de expandir
-        }, 100); // Tempo da animação (ajuste se necessário)
-
-        menuContainer.classList.toggle('show'); // Isso fica por último para garantir a troca do ícone antes da animação de expandir
-
-        if (menuContainer.classList.contains('show')) {
-            const menuButtons = document.querySelectorAll('.menu-button');
-            menuButtons.forEach((button, index) => {
-                button.style.opacity = '0'; // Define a opacidade inicial como 0
-                button.style.transform = 'translateX(-20px)'; // Define a posição inicial
+                // Animação de fechamento
+                menuContainer.classList.add('hide');
                 setTimeout(() => {
-                    button.classList.add('animar'); // Adiciona a classe para iniciar a animação
-                }, index * 100); // Atraso para cada botão
-            });
-        }
+                    menuContainer.classList.remove('show', 'hide');
+                }, 250);
+            }
+            
+            iconeMenu.classList.add('expandir');
+        }, 50);
     });
 });   
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const portfolioBtn = document.getElementById('portfolioBtn');
