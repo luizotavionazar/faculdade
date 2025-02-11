@@ -12,11 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (activeSection && activeButton) {
             activeSection.classList.add('active');
-            activeButton.classList.add('active'); }
+            activeButton.classList.add('active');
+        }
 
         // Fechar submenu ao trocar de seção (exceto se for portfolio)
         if (sectionId !== 'portfolio') {
-            portfolioSubmenu.classList.remove('show'); }
+            portfolioSubmenu.classList.remove('show');
+        }
     }
 
     buttons.forEach(button => {
@@ -26,23 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Fechar submenu se não for o botão do Portfólio
             if (sectionId !== 'portfolio') {
-                portfolioSubmenu.classList.remove('show'); }
+                portfolioSubmenu.classList.remove('show');
+            }
 
             // Em dispositivos móveis, ocultar menu após clicar
             if (window.innerWidth < 768 && sectionId !== 'portfolio') {
                 const menuContainer = document.querySelector('.menu-container');
                 menuContainer.classList.add('hide');
-                
+
                 setTimeout(() => {
                     menuContainer.classList.remove('show', 'hide');
                 }, 300); // Tempo igual à duração da transição
             }
-            });
+
+            // Definir o botão ativo
+            setActiveButton(); // Adicione esta linha
+        });
     });
 });
 
 // Alterna o tema
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const toggleButton = document.getElementById('themeToggle');
     const themeIcon = document.querySelector('.icone-tema');
     const currentTheme = localStorage.getItem('theme') || 'light';
@@ -50,87 +56,122 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.setAttribute('data-theme', currentTheme);
     updateIcon(currentTheme); // Define o ícone inicial
 
-    toggleButton.addEventListener('click', function(event) {
+    toggleButton.addEventListener('click', function (event) {
         event.preventDefault();
         let theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
         updateIcon(theme); // Atualiza o ícone
     });
-    
+
     function updateIcon(theme) {
         themeIcon.classList.remove('expandir'); // Remove a classe de expandir para garantir que a animação funcione sempre
         themeIcon.classList.add('encolher'); // Adiciona a classe de encolher
 
         setTimeout(() => {
             themeIcon.classList.remove('encolher'); // Remove a classe de encolher após a animação
-            
+
             if (theme === 'dark') {
                 themeIcon.classList.remove('fa-moon');
                 themeIcon.classList.add('fa-sun');
-              } else {
+            } else {
                 themeIcon.classList.remove('fa-sun');
                 themeIcon.classList.add('fa-moon');
-              }
-        }, 200);
-        
-      }
-});   
+            }
+        }, 100);
+    }
+});
 
 // Alterna a exibição do menu em dispositivos móveis
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const menuToggleBtn = document.getElementById('menuToggleBtn');
     const menuContainer = document.querySelector('.menu-container');
     const iconeMenu = document.querySelector('.icone-menu'); // Seleciona o ícone
     const menuButtons = document.querySelectorAll('.menu-button');
+    const portfolioBtn = document.getElementById('portfolioBtn');
+    const portfolioSubmenu = document.getElementById('portfolioSubmenu');
+    const submenuButtons = document.querySelectorAll('.submenu-button');
+
+    // Função para resetar os botões
+    function resetButtons() {
+        menuButtons.forEach(btn => btn.classList.remove('active'));
+        submenuButtons.forEach(btn => btn.classList.remove('active'));
+        portfolioBtn.classList.remove('submenu-active');
+    }
+
+    // Função para definir o botão ativo com base na seção ativa
+    function setActiveButton() {
+        const activeSection = document.querySelector('.content-section.active');
+        if (activeSection) {
+            const activeButton = document.querySelector(`[data-section="${activeSection.id}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+                if (activeSection.id.startsWith('portfolio')) {
+                    portfolioBtn.classList.add('submenu-active');
+                }
+            }
+        }
+    }
 
     function animateMenuItems() {
         menuButtons.forEach((button, index) => {
             button.style.opacity = '0';
-        button.style.transform = 'translateX(-20px)';
-        setTimeout(() => {
-            button.style.opacity = '1';
-            button.style.transform = 'translateX(0)';
-            }, index * 100);
+            button.style.transform = 'translateX(-20px)';
+            setTimeout(() => {
+                button.style.opacity = '1';
+                button.style.transform = 'translateX(0)';
+            }, index * 150);
         });
     }
 
     // Impede que o menu feche ao clicar dentro dele
-    menuContainer.addEventListener('click', function(event) {
-    event.stopPropagation();
+    menuContainer.addEventListener('click', function (event) {
+        event.stopPropagation();
     });
 
-    menuToggleBtn.addEventListener('click', function(event) {
+    // Evento de clique no botão de alternância do menu
+    menuToggleBtn.addEventListener('click', function (event) {
         event.stopPropagation(); // Impede a propagação do evento
-        
+
+        // Alternar entre os ícones de "abrir" e "fechar"		
+        if (iconeMenu.classList.contains('fa-caret-down')) {		
+	            iconeMenu.classList.remove('fa-caret-down');		
+	            iconeMenu.classList.add('fa-caret-up'); // Ícone para menu aberto		
+	        } else {		
+	            iconeMenu.classList.remove('fa-caret-up');		
+	            iconeMenu.classList.add('fa-caret-down'); // Ícone para menu fechado		
+	        }
+
         iconeMenu.classList.remove('expandir');
         iconeMenu.classList.add('encolher');
-        
+
         setTimeout(() => {
             iconeMenu.classList.remove('encolher');
-            
+
             // Verifica o estado atual do menu
             const isOpening = !menuContainer.classList.contains('show');
-            
+
             if (isOpening) {
                 // Animação de abertura
                 menuContainer.classList.remove('hide');
                 menuContainer.classList.add('show');
                 animateMenuItems();
+
+                // Resetar os botões e definir o botão ativo
+                resetButtons();
+                setActiveButton();
             } else {
                 // Animação de fechamento
                 menuContainer.classList.add('hide');
                 setTimeout(() => {
                     menuContainer.classList.remove('show', 'hide');
-                }, 250);
+                }, 200);
             }
-            
+
             iconeMenu.classList.add('expandir');
         }, 50);
     });
-});   
-
-
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const portfolioBtn = document.getElementById('portfolioBtn');
@@ -141,12 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para animar os itens do submenu
     function animateSubmenuItems() {
         submenuButtons.forEach((button, index) => {
-        button.style.opacity = '0';
-        button.style.transform = 'translateX(-20px)';
-        setTimeout(() => {
-            button.style.opacity = '1';
-            button.style.transform = 'translateX(0)';
-            }, index * 100);
+            button.style.opacity = '0';
+            button.style.transform = 'translateX(-20px)';
+            setTimeout(() => {
+                button.style.opacity = '1';
+                button.style.transform = 'translateX(0)';
+            }, index * 200);
         });
     }
 
@@ -154,36 +195,42 @@ document.addEventListener('DOMContentLoaded', () => {
     portfolioBtn.addEventListener('mouseenter', () => {
         if (!portfolioSubmenu.classList.contains('show')) {
             portfolioSubmenu.classList.add('show');
-            animateSubmenuItems(); }
+            animateSubmenuItems();
+        }
     });
 
     // Manter aberto após clique
     submenuButtons.forEach(button => {
         button.addEventListener('click', (event) => {
-        event.stopPropagation();
-        keepOpen = true;
+            event.stopPropagation();
+            keepOpen = true;
 
-        submenuButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+            submenuButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
 
-        document.querySelectorAll('.content-section').forEach(section => {
-            section.classList.remove('active');
-        });
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
 
-        const targetSection = document.getElementById(button.dataset.section);
-        if (targetSection) {
-            targetSection.classList.add('active'); }
+            const targetSection = document.getElementById(button.dataset.section);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
 
-        document.getElementById('portfolio').classList.add('active');
+            document.getElementById('portfolio').classList.add('active');
+
+            // Definir o botão ativo
+            setActiveButton(); // Adicione esta linha
         });
     });
 
     // Fechar quando clicar em outros menus
     document.querySelectorAll('.menu-button').forEach(button => {
         button.addEventListener('click', () => {
-        if (button.dataset.section !== 'portfolio') {
-            keepOpen = false;
-            portfolioSubmenu.classList.remove('show'); }
+            if (button.dataset.section !== 'portfolio') {
+                keepOpen = false;
+                portfolioSubmenu.classList.remove('show');
+            }
         });
     });
 
@@ -191,78 +238,52 @@ document.addEventListener('DOMContentLoaded', () => {
     portfolioBtn.addEventListener('click', () => {
         if (!portfolioSubmenu.classList.contains('show')) {
             portfolioSubmenu.classList.add('show');
-            animateSubmenuItems(); 
+            animateSubmenuItems();
         }
-    });       
-    
+    });
+
     // Alternar seções de projetos ao clicar nos botões do submenu
     submenuButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             event.stopPropagation();
-            
-            // Remover classe active de todos os botões
+
+            // Fechar o submenu
+            portfolioSubmenu.classList.remove('show');
+
+            // Fechar o menu principal (menu-container)
+            const menuContainer = document.querySelector('.menu-container');
+            menuContainer.classList.add('hide');
+            setTimeout(() => {
+                menuContainer.classList.remove('show', 'hide');
+            }, 250); // Tempo igual à duração da animação de fechamento
+
+            // Restante da lógica para alternar as seções
             submenuButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Adicionar classe active no botão clicado
             button.classList.add('active');
 
-            // Adicionar classe ao botão Portfólio para mudar a cor
-            portfolioBtn.classList.add('submenu-active');
-            
             document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
             const targetSection = document.getElementById(button.dataset.section);
-            
+
             if (targetSection) {
-              targetSection.classList.add('active'); }    
-            
-            document.getElementById('portfolio').classList.add('active'); 
-            
+                targetSection.classList.add('active');
+            }
+
+            document.getElementById('portfolio').classList.add('active');
+
             if (window.innerWidth < 768) {
-              portfolioSubmenu.classList.remove('show'); }
+                portfolioSubmenu.classList.remove('show');
+            }
+
+            // Definir o botão ativo
+            setActiveButton(); // Adicione esta linha
         });
-    
-        // Remover a cor do botão Portfólio ao clicar em outro menu
+    });
+
     document.querySelectorAll('.menu-button').forEach(button => {
         button.addEventListener('click', () => {
             if (button.dataset.section !== 'portfolio') {
-                portfolioBtn.classList.remove('submenu-active'); }
-            });
-        });
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuButtons = document.querySelectorAll('.menu-button');
-        const submenuButtons = document.querySelectorAll('.submenu-button');
-        const portfolioBtn = document.getElementById('portfolioBtn');
-    
-        function resetButtons() {
-            menuButtons.forEach(btn => btn.classList.remove('active'));
-            submenuButtons.forEach(btn => btn.classList.remove('active'));
-        }
-    
-        // Evento para os botões principais do menu
-        menuButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                resetButtons(); // Reseta tudo
-                button.classList.add('active'); // Adiciona classe ativa apenas ao botão clicado
-            });
-        });
-    
-        // Evento para os botões do submenu
-        submenuButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                resetButtons(); // Reseta todos os botões, incluindo os principais
-                button.classList.add('active'); // Adiciona classe ativa apenas ao submenu clicado
-                portfolioBtn.classList.add('active'); // Mantém o botão Portfólio ativo
-            });
-        });
-    
-        // Reseta os outros botões quando o mouse passa no Portfólio
-        portfolioBtn.addEventListener('mouseenter', () => {
-            menuButtons.forEach(btn => {
-                if (btn !== portfolioBtn) {
-                    btn.classList.remove('active'); // Remove a classe active dos outros botões
-                }
-            });
+                portfolioBtn.classList.remove('submenu-active');
+            }
         });
     });
 });
