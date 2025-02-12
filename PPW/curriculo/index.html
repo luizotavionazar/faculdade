@@ -19,7 +19,6 @@
               Tenho o objetivo de crescer profissionalmente e de maneira produtiva, além de contribuir para o desenvolvimento da organização como um todo.
             </p>
         </header>
-        <aside>
             <div class="nav">
                 <div class="menu-icon">
                     <a href="#" id="menuToggleBtn">
@@ -32,12 +31,12 @@
                     </a>
                 </div>
             </div>
-        </aside>
         <main>
             <div class="container"> <!-- Container principal: Menu lateral e área de conteúdo -->
                   <!-- Menu Lateral -->
                   <div class="menu-container">
-                      <button class="menu-button active" data-section="habilidades"><i class="fa-solid fa-fire"></i> Habilidades</button>
+                      <button class="menu-button active" data-section="pessoal"><i class="fa-solid fa-user"></i> Sobre mim</button>
+                      <button class="menu-button" data-section="habilidades"><i class="fa-solid fa-fire"></i> Habilidades</button>
                       <button class="menu-button" data-section="formacao"><i class="fa-solid fa-user-graduate"></i> Formação</button>
                       <button class="menu-button" data-section="experiencias"><i class="fa-solid fa-globe"></i> Experiências</button>
                       <button class="menu-button" data-section="portfolio" id="portfolioBtn"><i class="fa-solid fa-laptop-code"></i> Portfólio</button>
@@ -48,22 +47,59 @@
                           <button class="submenu-button" data-section="item4"><i class="fa-regular fa-square-caret-right"></i> Projeto 4</button>
                           <button class="submenu-button" data-section="item5"><i class="fa-regular fa-square-caret-right"></i> Projeto 5</button>
                       </div>
-                      <button class="menu-button" data-section="pessoal"><i class="fa-solid fa-user"></i> Sobre mim</button>
                       <button class="menu-button" data-section="contato"><i class="fa-regular fa-handshake"></i> Contato</button>
                   </div>    
   
                   <!-- Área de Exibição do Conteúdo -->
                   <div class="content">
-                      <section id="habilidades" class="content-section active">
-                          <ul>
-                              <li>Java, C++, SQL, HTML e CSS básico</li>
-                              <li>MySQL, Postgre, pgAdmin, VS Code</li>
-                              <li>Conhecimentos básicos de marketing</li>
-                              <li>Familiarizado com trabalho em equipe</li>
-                              <li>Disposto a aprender novas habilidades</li>
-                              <li>Habilidade em atendimento ao cliente e suporte técnico avançado</li>
-                              <li>Gestão e gerenciamento de projetos</li>
-                          </ul>
+                      <section id="pessoal" class="content-section active">
+                        <h2>Quem sou eu?</h2>
+
+                        <div class="sobre">
+                            <img src="images/eu.jpeg" alt="Luiz Otávio">
+                            <div class="texto">
+                                <p>
+                                    Sou o Luiz Otávio, um estudante de Análise e Desenvolvimento de Sistemas apaixonado por tecnologia e conhecimento. Atualmente, curso o 4º período do meu curso e concilio os estudos com o trabalho como auxiliar de analista de sistemas.
+                                </p>
+                                <p>
+                                    Minha trajetória profissional tem me direcionado para a área de programação, com foco em desenvolvimento back-end. Busco aprimorar minhas habilidades e conhecimentos para construir uma carreira sólida nesse campo.
+                                </p>
+                                <p>
+                                    Fora do mundo da tecnologia, sou um apreciador de música de qualidade e cinéfilo de carteirinha. Acredito que a arte é uma forma poderosa de expressão e enriquecimento pessoal.
+                                </p>
+                                <p>
+                                    Minha curiosidade me impulsiona a estar sempre atualizado sobre os acontecimentos do mundo e me leva a buscar aprendizado em diversas áreas. Tenho facilidade em aprender coisas novas, principalmente quando o assunto me interessa.
+                                </p>
+                                <p>
+                                    Sou uma pessoa dedicada, proativa e que busca sempre dar o seu melhor em tudo o que faz. Acredito que a persistência e a busca constante por conhecimento são fundamentais para alcançar meus objetivos.
+                                </p>
+                                <p>
+                                    Tenho grande interesse em fazer parte de projetos desafiadores e que me permitam aplicar meus conhecimentos e habilidades em desenvolvimento back-end.
+                                </p>
+                                <p>
+                            </div>
+                        </div>
+                      </section>  
+
+                      <section id="habilidades" class="content-section">
+                        <h3>Habilidades</h3>
+
+                        <h4>Hard Skills</h4>
+                        <ul>
+                            <li><strong>Linguagens de programação:</strong> Java, C++, SQL, HTML e CSS básico</li>
+                            <li><strong>Bancos de dados:</strong> MySQL, PostgreSQL, pgAdmin</li>
+                            <li><strong>Ferramentas de desenvolvimento:</strong> VS Code</li>
+                            <li><strong>Marketing:</strong> Conhecimentos básicos de marketing</li>
+                        </ul>
+                    
+                        <h4>Soft Skills</h4>
+                        <ul>
+                            <li><strong>Trabalho em equipe:</strong> Familiarizado com trabalho em equipe</li>
+                            <li><strong>Aprendizado:</strong> Disposto a aprender novas habilidades e possuo aprendizado rápido quando algo me interessa</li>
+                            <li><strong>Atendimento ao cliente:</strong> Habilidade em atendimento ao cliente e suporte técnico avançado</li>
+                            <li><strong>Gestão de projetos:</strong> Conhecimentos em gestão e gerenciamento de projetos</li>
+                        </ul>
+                        
                       </section>  
   
                       <section id="formacao" class="content-section">
@@ -139,7 +175,7 @@
                       </section>  
   
                       <section id="portfolio" class="content-section">
-                          <h2>Portfólio</h2>
+                          <h3>Portfólio</h3>
                           <p>Confira meus projetos recentes:</p>
                           <div class="projetos">
                               <!-- Adicione imagens ou cards de projetos aqui -->
@@ -171,10 +207,7 @@
                           </div>
                       </section>  
   
-                      <section id="pessoal" class="content-section">
-                          <h2>Pessoal</h2>
-                          <p>Falar de mim<br>E do que eu gosto</p>
-                      </section>  
+                      
   
                       <section id="contato" class="content-section">
                           <h2 id="contato">CONTATO</h2>
