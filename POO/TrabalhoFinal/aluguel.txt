@@ -12,7 +12,8 @@ Contém os equipamentos disponíveis para aluguel.
 
 id_equipamento int ai nn uq (PK)
 descricao varchar(60) nn
-preco_diaria double nn
+valor_diaria float nn
+valor_mensal float nn
 quantidade_total int nn
 quantidade_disponivel int nn
 
@@ -20,13 +21,47 @@ Contratos (Contratos)
 Registra as informações sobre cada aluguel, como o cliente, o equipamento alugado e o período de locação.
 
 id_contrato int ai nn uq (PK) 
+tipo int nn (1- mensal 2- diario)
 id_cliente int nn (FK)
 id_equipamento int nn (FK)
 data_inicio datetime nn
 data_fim datetime nn
-valor_total float nn 
-status_contrato (ex: ativo, finalizado, cancelado) varchar(1) nn
+data_entrega datetime
+multa float 
+juros float 
+valor_total float nn
+status (A-ativo, F-finalizado, C-cancelado) varchar(1) nn
 
 Relacionamentos:
 Clientes x Contratos: Um cliente pode ter vários contratos, mas cada contrato pertence a um único cliente.
 Equipamentos x Contratos: Um contrato envolve um equipamento, mas cada equipamento pode estar em vários contratos.
+
+
+Algumas Regras de Negócio:
+
+Data de processamento:
+- Deverá ser possivel alterar a data de processamento do sistema, para que as demais funções do codigo possa ser realizada;
+- A data de processamento deve ser gravada em uma variavel sempre que iniciado o sistema, capturando a data atual, mas podera ser alterada posteriormente para realização dos testes;
+- Ela sera utilizada para realizar os calculos de multa, juros e entrega do equipamento;
+
+Cálculo do Valor Total:
+- Se tipo = 1 (mensal), o valor_total deve ser baseado no valor_mensal do equipamento multiplicado pelo número de meses contratados.
+- Se tipo = 2 (diário), o valor_total deve ser baseado no valor_diaria do equipamento multiplicado pelo número de dias contratados.
+
+Cálculo da Multa:
+- Se o contrato for cancelado antes do término, a multa deve ser calculada com base no tempo restante e no tipo de contrato.
+    Exemplo:
+    Para contratos mensais: Multa = 20% do valor mensal.
+    Para contratos diários: Multa = 50% do valor diário por dia restante.
+- Se o contrato for finalizado depois do tempo de término, a multa e juros devem ser calculados com base no tempo restante e no tipo de contrato.
+    Exemplo:
+    Para contrato mensais: Multa = 50% do valor mensal + 10% de juros diários sobre o valor total(considerando os juros anteriores)
+    Para contratos diarios: Multa = 70% do valor diario + 10% de juros diários sobre o valor total(considerando os juros anteriores)
+
+Atualização do Status do Contrato:
+- Quando o equipamento for alugado, o campo status deve ser atualizado para 'A';
+- Quando o equipamento for entregue, o campo data_entrega deve ser preenchido, e o status deve ser atualizado.
+    - Se a entrega for realizada antes da data_fim ou na própria, o status deve ser atualizado para 'F';
+    - Se a entrega for realizada depois da data_fim, o status deve ser atualizado para 'F' e a multa e juros devem ser calculados;
+- Se o contrato for cancelado, o status deve ser atualizado para 'C', e a multa deve ser calculada.
+- O contrato pode ser cancelado apenas se a data de processamento for menor que a data_fim do contrato.
