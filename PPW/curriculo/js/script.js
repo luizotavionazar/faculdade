@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.menu-button');
     const sections = document.querySelectorAll('.content-section');
+    const portfolioSubmenu = document.getElementById('portfolioSubmenu');
+
 
     function showSection(sectionId) {
         sections.forEach(section => section.classList.remove('active'));
@@ -89,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const iconeMenu = document.querySelector('.icone-menu'); // Seleciona o ícone
     const menuButtons = document.querySelectorAll('.menu-button');
     const portfolioBtn = document.getElementById('portfolioBtn');
-    const portfolioSubmenu = document.getElementById('portfolioSubmenu');
     const submenuButtons = document.querySelectorAll('.submenu-button');
 
     // Função para resetar os botões
