@@ -19,16 +19,14 @@ quantidade_disponivel int nn
 Contratos (Contratos)
 Registra as informações sobre cada aluguel, como o cliente, o equipamento alugado e o período de locação.
 
-id_contrato (PK)
-id_cliente (FK)
-id_equipamento (FK)
-data_inicio
-data_fim
-valor_total
-status_contrato (ex: ativo, finalizado, cancelado)
-Transações (Transacoes)
-Guarda o registro de pagamentos ou alterações de valores, como o valor pago ou qualquer penalidade.
+id_contrato int ai nn uq (PK) 
+id_cliente int nn (FK)
+id_equipamento int nn (FK)
+data_inicio datetime nn
+data_fim datetime nn
+valor_total float nn 
+status_contrato (ex: ativo, finalizado, cancelado) varchar(1) nn
 
 Relacionamentos:
 Clientes x Contratos: Um cliente pode ter vários contratos, mas cada contrato pertence a um único cliente.
-Equipamentos x Contratos: Um contrato envolve um equipamento, mas cada equipamento pode estar em vários contratos (dependendo de como for o sistema).
+Equipamentos x Contratos: Um contrato envolve um equipamento, mas cada equipamento pode estar em vários contratos.
