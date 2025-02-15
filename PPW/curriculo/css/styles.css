@@ -86,7 +86,7 @@ header h1 {
 }
 
 /* Botões do cabeçalho */
-#themeToggle, #menuToggleBtn {
+#themeToggle, #iconMenu {
   padding: 8px 12px;
   border: none;
   border-radius: 5px;
@@ -94,7 +94,7 @@ header h1 {
   transition: background-color 0.3s;
 }
 
-#menuToggleBtn {
+#iconMenu {
   font-size: 30px;
   display: inline-block;
   color: inherit;
@@ -217,7 +217,7 @@ header h1 {
 }
 
 .submenu-button.active {
-  background-color: #1abc9c !important;
+  background-color: #1abc9c ;
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
@@ -331,7 +331,7 @@ header h1 {
       box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   }
 
-  #menuToggleBtn {
+  #iconMenu {
       display: none;
   }
 
