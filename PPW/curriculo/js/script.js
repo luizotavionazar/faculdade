@@ -13,14 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             themeIcon.classList.remove('encolher');
-
-            if (theme === 'dark') { // Alterna entre os ícones de sol e lua
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
+            themeIcon.classList.toggle('fa-moon', theme !== 'dark'); // Lua para tema claro
+            themeIcon.classList.toggle('fa-sun', theme === 'dark'); // Sol para tema escuro
         }, 100);
     }
 
@@ -120,32 +114,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-    //--------------------MENU----------------------
 
-    //--------------------ANIMAÇÃO----------------------
     const portfolioBtn = document.getElementById('portfolioBtn');
+    portfolioBtn.addEventListener('mouseenter', () => { // Animação do submenu ao passar o mouse
+        if (!portfolioSubmenu.classList.contains('show')) {
+            portfolioSubmenu.classList.add('show');
+            animaSubMenu();
+        }
+    });
+
     const submenubotoes = document.querySelectorAll('.submenu-button');
     let keepOpen = false;
 
-    function animateSubmenuItems() { // Função para animar os itens do submenu
+    function animaSubMenu() { // Função para animar os itens do submenu
         submenubotoes.forEach((button, index) => {
-            button.style.opacity = '0';
+            button.style.opacity = '0';                     //transformar em CSS
             button.style.transform = 'translateX(-20px)';
             setTimeout(() => {
                 button.style.opacity = '1';
                 button.style.transform = 'translateX(0)';
-            }, index * 200);
+            }, index * 160);
         });
     }
 
-    portfolioBtn.addEventListener('mouseenter', () => { // Animação do submenu ao passar o mouse
-        if (!portfolioSubmenu.classList.contains('show')) {
-            portfolioSubmenu.classList.add('show');
-            animateSubmenuItems();
-        }
-    });
-
-    document.querySelectorAll('.menu-button').forEach(button => {
+    document.querySelectorAll('.menu-button').forEach(button => { //Fecha o submenu ao clicar em outro botão do menu
         button.addEventListener('click', () => {
             if (button.dataset.section !== 'portfolio') {
                 keepOpen = false;
@@ -168,9 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 menu.classList.remove('show', 'hide');
             }, 250); // Tempo igual à duração da animação de fechamento
 
-            // Restante da lógica para alternar as seções
-            submenubotoes.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
+            submenubotoes.forEach(btn => btn.classList.remove('active')); // Remover a classe active de todos os botões
+            button.classList.add('active'); // Adicionar a classe active ao botão clicado
 
             document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
             const targetSection = document.getElementById(button.dataset.section);
@@ -179,56 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetSection.classList.add('active');
             }
 
-            document.getElementById('portfolio').classList.add('active');
-
-            if (window.innerWidth < 768) {
-                portfolioSubmenu.classList.remove('show');
-            }
-
-            // Definir o botão ativo
-            setbotaoAgora(); // Adicione esta linha
+            document.getElementById('portfolio').classList.add('active'); //Exibe o conteudo selecionado do portfólioz
+            
         });
     });
-
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    
-    
-
-    // Manter aberto após clique
-    submenubotoes.forEach(button => {
-        button.addEventListener('click', (event) => {
-            event.stopPropagation();
-            keepOpen = true;
-
-            submenubotoes.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            const targetSection = document.getElementById(button.dataset.section);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-
-            document.getElementById('portfolio').classList.add('active');
-
-            // Definir o botão ativo
-            setbotaoAgora(); // Adicione esta linha
-        });
-    });
-
-    // Alternar exibição do submenu ao clicar no botão Portfólio
-    portfolioBtn.addEventListener('click', () => {
-        if (!portfolioSubmenu.classList.contains('show')) {
-            portfolioSubmenu.classList.add('show');
-            animateSubmenuItems();
-        }
-    });
-
-    // Alternar seções de projetos ao clicar nos botões do submenu
+    //--------------------MENU----------------------
     
 });

@@ -263,14 +263,6 @@ header h1 {
   animation: expandir 0.3s ease-in-out forwards;
 }
 
-.icone-menu.encolher {
-  animation: encolher 0.3s ease-in-out forwards;
-}
-
-.icone-menu.expandir {
-  animation: expandir 0.3s ease-in-out forwards;
-}
-
 .menu-button.animar {
   animation: slideIn 1s ease-out forwards;
 }
