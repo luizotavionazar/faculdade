@@ -34,6 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const secoes = document.querySelectorAll('.content-section');
     const portfolioSubmenu = document.getElementById('portfolioSubmenu');
     const menu = document.querySelector('.menu-container');
+    const secaoTitulo = document.getElementById('sessao-titulo');
+    const titulosSecao = {
+        pessoal: "QUEM SOU EU?",
+        habilidades: "HARD/SOFT SKILLS",
+        formacao: "FORMAÇÃO ACADEMICA",
+        experiencias: "HISTÓRICO PROFISSIONAL",
+        portfolio: "COLEÇÃO DE TRABALHOS",
+        contato: "ENTRE EM CONTATO",
+        item1: "Projeto 1",
+        item2: "Projeto 2",
+        item3: "Projeto 3",
+        item4: "Projeto 4",
+        item5: "Projeto 5"
+    };
 
     function ativarMenu(secaoId) { // Função para exibir o conteudo da seção clicada e ativar o botão clicado
         secoes.forEach(section => section.classList.remove('active')); // Para exibir apenas o conteudo da seção clicada
@@ -41,6 +55,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const secaoAgora = document.getElementById(secaoId);
         const botaoAgora = document.querySelector(`[data-section="${secaoId}"]`);
+        const secaoAtual = document.querySelector('.content-section.active');
+
+        if (secaoAtual && secaoAgora && secaoAtual !== secaoAgora) {
+            secaoAtual.classList.add('fade-out'); // Realiza a animação de fade out
+            secaoAtual.addEventListener('animationend', () => { // Espera a animação de fade out terminar antes de trocar de seção
+                secaoAtual.classList.remove('active', 'fade-out');
+                secaoAgora.classList.add('active');
+                secaoTitulo.textContent = titulosSecao[secaoId] || "Seção Desconhecida";
+            }, { once: true });
+        } else if (secaoAgora && !secaoAtual) { // Caso não haja uma seção ativa, apenas ativa a nova seção
+            secaoAgora.classList.add('active');
+            secaoTitulo.textContent = // Atualiza o texto da seção no nav
+            secaoTitulo.textContent = titulosSecao[secaoId] || "Seção Desconhecida";
+        }
+
+        botoes.forEach(button => button.classList.remove('active'));
+        if (botaoAgora) {
+            botaoAgora.classList.add('active');
+        }
 
         if (secaoAgora && botaoAgora) { // Ativa a seção e o botão clicado
             secaoAgora.classList.add('active');
@@ -49,8 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (secaoId !== 'portfolio') { // Fechar submenu ao trocar de seção
             portfolioSubmenu.classList.remove('show');
-        } else { 
-            // Aqui - colocar codigo para ativar o botão portifolio para garantir que ele mudará de cor ao acessar uma opção do submenu
         }
     }
 
@@ -62,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (window.innerWidth < 768 && secaoId !== 'portfolio') {
                 menu.classList.add('hide');
-
                 setTimeout(() => {
                     menu.classList.remove('show', 'hide');
                 }, 300); // Tempo igual à duração da transição
@@ -86,6 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }, index * 150);
         });
     }
+
+
+
     //--------------------SEÇÂO E BOTÃO ATIVO----------------------
 
     //--------------------MENU----------------------
@@ -116,13 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const portfolioBtn = document.getElementById('portfolioBtn');
-    portfolioBtn.addEventListener('mouseenter', () => { // Animação do submenu ao passar o mouse
-        if (!portfolioSubmenu.classList.contains('show')) {
-            portfolioSubmenu.classList.add('show');
-            animaSubMenu();
-        }
-    });
-
     const submenubotoes = document.querySelectorAll('.submenu-button');
     let keepOpen = false;
 
@@ -137,6 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    portfolioBtn.addEventListener('click', () => { // Animação do submenu ao passar o mouse
+        if (!portfolioSubmenu.classList.contains('show')) {
+            portfolioSubmenu.classList.add('show');
+            animaSubMenu();
+        }
+    });
+
     document.querySelectorAll('.menu-button').forEach(button => { //Fecha o submenu ao clicar em outro botão do menu
         button.addEventListener('click', () => {
             if (button.dataset.section !== 'portfolio') {
@@ -150,18 +183,16 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', (event) => {
             event.stopPropagation();
 
-            // Fechar o submenu
-            portfolioSubmenu.classList.remove('show');
-
-            // Fechar o menu principal (menu-container)
-            const menu = document.querySelector('.menu-container');
-            menu.classList.add('hide');
-            setTimeout(() => {
-                menu.classList.remove('show', 'hide');
-            }, 250); // Tempo igual à duração da animação de fechamento
-
+            if (window.innerWidth < 768) { // Fecha o submenu ao selecionar a opção no telefone
+                portfolioSubmenu.classList.remove('show'); // Fechar o submenu
+                const menu = document.querySelector('.menu-container'); // Fechar o menu principal (menu-container)
+                menu.classList.add('hide');
+                setTimeout(() => {
+                    menu.classList.remove('show', 'hide');
+                }, 450); // Tempo igual à duração da animação de fechamento
+            }
+            
             submenubotoes.forEach(btn => btn.classList.remove('active')); // Remover a classe active de todos os botões
-            button.classList.add('active'); // Adicionar a classe active ao botão clicado
 
             document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
             const targetSection = document.getElementById(button.dataset.section);
@@ -171,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             document.getElementById('portfolio').classList.add('active'); //Exibe o conteudo selecionado do portfólioz
-            
+            document.getElementById('portfolioBtn').classList.add('active');
         });
     });
     //--------------------MENU----------------------
