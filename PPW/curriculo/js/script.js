@@ -40,13 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         habilidades: "HARD/SOFT SKILLS",
         formacao: "FORMAÇÃO ACADEMICA",
         experiencias: "HISTÓRICO PROFISSIONAL",
-        portfolio: "COLEÇÃO DE TRABALHOS",
-        contato: "ENTRE EM CONTATO",
-        item1: "Projeto 1",
-        item2: "Projeto 2",
-        item3: "Projeto 3",
-        item4: "Projeto 4",
-        item5: "Projeto 5"
+        portfolio: "PROJETOS",
+        contato: "ENTRE EM CONTATO"
     };
 
     function ativarMenu(secaoId) { // Função para exibir o conteudo da seção clicada e ativar o botão clicado
